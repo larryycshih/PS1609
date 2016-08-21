@@ -5,6 +5,8 @@ Contributers:
 	* Matthew
 	* Sarah
 	
-This webapp will programmed using ASP.NET
+This webapp will programmed using ASP.NET with C# as server side language
+
+
 
 
