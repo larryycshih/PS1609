@@ -3,99 +3,78 @@
 }
 @section BubbleTree_Dependencies{
 
-<script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery-migrate.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.history.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery.tooltip.min.js")"></script>
-<script src="@Url.Content("~/Scripts/raphael-min.js")"></script>
-<script src="@Url.Content("~/Scripts/Tween.js")"></script>
-<script src="@Url.Content("~/Scripts/bubbletree.js")"></script>
-<link href="~/Content/bubbletree.css" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-migrate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.history.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/raphael-min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Tween.js")"></script>
+    <script src="@Url.Content("~/Scripts/bubbletree.js")"></script>
+    <link href="~/Content/bubbletree.css" rel="stylesheet" />
 
-<script type="text/javascript">
-    $(function () {
-        var randomNames = ['Burgis', 'Pascal', 'Lysann', 'Theo', 'Julia', 'Barnabas', 'Immanuel', 'Marisa', 'Folker', 'Hadumod', 'Friedegunde', 'Marco', 'Otto', 'Sonnhardt', 'Arntraud', 'Andree', 'Wiltrudis', 'Astrid', 'Kathrein', 'Raoul', 'Vivien', 'Ole', 'Leo', 'Dankward', 'David', 'Ferfried', 'Sonngard', 'Fabio', 'Hansjakob', 'Huberta', 'Doro', 'Gordian', 'Sturmius', 'Sturmhard', 'Reintraud', 'Sabine', 'Georg', 'Sylvia', 'Ann', 'Editha', 'Gunhard', 'Etienne', 'Hildtraud', 'Noah', 'Margarete', 'Stilla', 'Brian', 'Pauline', 'Edgar', 'Kathrin'];
-        var nodeCount = 1;
-        function generateRandomData(node, level) {
-            if (!level) level = 1;
-            var numChildren = 20; //3+Math.round(Math.random()*6);
-            node.children = [];
-            var amount = node.amount;
-            for (var i = 0; i < numChildren; i++) {
-                nodeCount++;
-                var child = {
-                    label: 'Random spending of ' + randomNames[Number(String(level - 1) + String(i)) % randomNames.length] + ' and ' + randomNames[Math.floor(Math.random() * randomNames.length)],
-                    amount: i + 1 < numChildren ? amount * Math.random() * .3 : amount,
-                    shortLabel: ''
-                };
-                if (level == 1) child.color = vis4color.fromHSL(i / numChildren * 360, .7, .5).x;
-                if (level == 2) child.color = vis4color.fromHex(node.color).lightness('*' + (.5 + Math.random() * .5)).x;
-                amount -= child.amount;
-                node.children.push(child);
-                if (level < 3) generateRandomData(child, level + 1);
+    <script type="text/javascript">
+        $(function () {
+            var randomNames = ['Burgis', 'Pascal', 'Lysann', 'Theo', 'Julia', 'Barnabas', 'Immanuel', 'Marisa', 'Folker', 'Hadumod', 'Friedegunde', 'Marco', 'Otto', 'Sonnhardt', 'Arntraud', 'Andree', 'Wiltrudis', 'Astrid', 'Kathrein', 'Raoul', 'Vivien', 'Ole', 'Leo', 'Dankward', 'David', 'Ferfried', 'Sonngard', 'Fabio', 'Hansjakob', 'Huberta', 'Doro', 'Gordian', 'Sturmius', 'Sturmhard', 'Reintraud', 'Sabine', 'Georg', 'Sylvia', 'Ann', 'Editha', 'Gunhard', 'Etienne', 'Hildtraud', 'Noah', 'Margarete', 'Stilla', 'Brian', 'Pauline', 'Edgar', 'Kathrin'];
+            var nodeCount = 1;
+            function generateRandomData(node, level) {
+                if (!level) level = 1;
+                var numChildren = 20; //3+Math.round(Math.random()*6);
+                node.children = [];
+                var amount = node.amount;
+                for (var i = 0; i < numChildren; i++) {
+                    nodeCount++;
+                    var child = {
+                        label: 'Random spending of ' + randomNames[Number(String(level - 1) + String(i)) % randomNames.length] + ' and ' + randomNames[Math.floor(Math.random() * randomNames.length)],
+                        amount: i + 1 < numChildren ? amount * Math.random() * .3 : amount,
+                        shortLabel: ''
+                    };
+                    if (level == 1) child.color = vis4color.fromHSL(i / numChildren * 360, .7, .5).x;
+                    if (level == 2) child.color = vis4color.fromHex(node.color).lightness('*' + (.5 + Math.random() * .5)).x;
+                    amount -= child.amount;
+                    node.children.push(child);
+                    if (level < 3) generateRandomData(child, level + 1);
+                }
+                return node;
             }
-            return node;
-        }
 
-        var data = generateRandomData({
-            label: 'Random Names, Random Amounts',
-            amount: 100000000
-        });
+            var data = generateRandomData({
+                label: 'Random Names, Random Amounts',
+                amount: 100000000
+            });
 
-        new BubbleTree({
-            data: data,
-            container: '.bubbletree',
-            minRadiusHideLabels: 20,
-            cutLabelsAt: 30
+            new BubbleTree({
+                data: data,
+                container: '.bubbletree',
+                minRadiusHideLabels: 20,
+                cutLabelsAt: 30
+            });
         });
-    });
-</script>
+    </script>
 }
 
-<div class="row">
-    
+
+
+
+<div class="jumbotron">
     <div class="bubbletree-wrapper">
         <div class="bubbletree"></div>
     </div>
 </div>
+<div class=" container">
+    <div class="row">
+        <div class="w3-card col-md-4">
 
-<div class="row">
-    <div class="col-md-8">
-
-    </div>
-
-    <div class="col-md-4">
-
-    </div>
-</div>
-
-<!--
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-Hello this is a line 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            this is box 1
+        </div>
+        <div class="w3-card col-md-4">
+            this is box 2
+        </div>
+        <div class="w3-card col-md-4">
+            this is box 3
+        </div>
     </div>
 </div>
 
-    -->
+
+
+
