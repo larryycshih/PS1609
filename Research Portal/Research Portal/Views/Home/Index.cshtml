@@ -14,7 +14,15 @@
 
     <script type="text/javascript">
         $(function () {
-            var randomNames = ['Burgis', 'Pascal', 'Lysann', 'Theo', 'Julia', 'Barnabas', 'Immanuel', 'Marisa', 'Folker', 'Hadumod', 'Friedegunde', 'Marco', 'Otto', 'Sonnhardt', 'Arntraud', 'Andree', 'Wiltrudis', 'Astrid', 'Kathrein', 'Raoul', 'Vivien', 'Ole', 'Leo', 'Dankward', 'David', 'Ferfried', 'Sonngard', 'Fabio', 'Hansjakob', 'Huberta', 'Doro', 'Gordian', 'Sturmius', 'Sturmhard', 'Reintraud', 'Sabine', 'Georg', 'Sylvia', 'Ann', 'Editha', 'Gunhard', 'Etienne', 'Hildtraud', 'Noah', 'Margarete', 'Stilla', 'Brian', 'Pauline', 'Edgar', 'Kathrin'];
+            var randomNames = ['School of Business',
+                'School of Computing, Engineering and Mathematics',
+                'School of Education',
+                'School of Humanities and Communication Arts',
+                'School of Law',
+                'School of Medicine',
+                'School of Nursing and Midwifery',
+                'School of Social Sciences and Psychology',
+                'School of Science and Health'];
             var nodeCount = 1;
             function generateRandomData(node, level) {
                 if (!level) level = 1;
@@ -24,7 +32,7 @@
                 for (var i = 0; i < numChildren; i++) {
                     nodeCount++;
                     var child = {
-                        label: 'Random spending of ' + randomNames[Number(String(level - 1) + String(i)) % randomNames.length] + ' and ' + randomNames[Math.floor(Math.random() * randomNames.length)],
+                        label: randomNames[Number(String(level - 1) + String(i)) % randomNames.length] + ' and ' + randomNames[Math.floor(Math.random() * randomNames.length)],
                         amount: i + 1 < numChildren ? amount * Math.random() * .3 : amount,
                         shortLabel: ''
                     };
@@ -54,26 +62,26 @@
 
 
 
-
-<div class="jumbotron">
-    <div class="bubbletree-wrapper">
-        <div class="bubbletree"></div>
-    </div>
-</div>
-<div class=" container">
-    <div class="row">
-        <div class="w3-card col-md-4">
-
-            this is box 1
-        </div>
-        <div class="w3-card col-md-4">
-            this is box 2
-        </div>
-        <div class="w3-card col-md-4">
-            this is box 3
+<div class="row">
+    <div class="jumbotron ">
+        <div class="bubbletree-wrapper">
+            <div class="bubbletree"></div>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="w3-card col-md-4">
+
+        this is box 1
+    </div>
+    <div class="w3-card col-md-4">
+        this is box 2
+    </div>
+    <div class="w3-card col-md-4">
+        this is box 3
+    </div>
+</div>
+
 
 
 
