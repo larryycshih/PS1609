@@ -15,9 +15,17 @@
             <h4>Author</h4>
             <table>
                 <tr>
-                    s
                     <td>Title: </td>
-                    <td> <input ID="TitleTextBox"/> </td>
+                    <td> 
+                        <select id="TitleDropDown">
+                            <option value="Mr">Mr.</option>
+                            <option value="Mrs">Mrs.</option>
+                            <option value="Miss">Miss.</option>
+                            <option value="Dr">Dr.</option>
+                            <option value="Prof">Prof.</option>
+                            <option value="AssocProf">Assoc. Prof.</option>
+                         </select> 
+                    </td>
                 </tr>
                 <tr>
                     <td>Firstname: </td>
@@ -27,10 +35,31 @@
                     <td>Surname: </td>
                     <td> <input ID="SurnameTextBox"/> </td>
                 </tr>
+                <tr>
+                    <td>School: </td>
+                    <td>
+                        <select id="SchoolDropDown">
+                            <option value="SchoolOfComputing">School of Computing, Engineering &amp; Mathematics</option>
+                            <option value="SchoolOfEducation">School of Education</option>
+                            <option value="SchoolOfBusiness">School of Business</option>
+                            <option value="SchoolOfHumanities">School of Humanities &amp; Art</option>
+                            <option value="SchoolOfLaw">School of Law</option>
+                            <option value="SchoolOfMedicine">School of Medicine</option>
+                            <option value="SchoolOfNursing">School of Nursing &amp; Midwifery</option>
+                            <option value="SchoolOfPsychology">School of Social Science &amp; Phsychology</option>
+                            <option value="SchoolOfScience">School of  Science &amp; Health</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                <td>Grant Amount: $</td>
+                    <td> <input id="GrantTextBox" pattern="[0-9]+[.]*[0-9]{2}" title="Currency Format XXX.XX"/> </td>
+                </tr>
             </table>
 
         </div>
-        <Button ID="Submit" Text="Submit" />&nbsp<Button ID="Clear" Text="Clear"/>
+        <br/>
+        <Button ID="Submit">Submit</Button> &nbsp <Button ID="Clear">Clear</Button>
     </form>
 </body>
 </html>
