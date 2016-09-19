@@ -26,5 +26,12 @@ namespace Research_Portal.Controllers
 
             return View();
         }
+
+        public ActionResult AddResearch()
+        {
+            
+
+            return View();
+        }
     }
 }
