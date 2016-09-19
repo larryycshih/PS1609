@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Add Research";
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Add Research</title>
+</head>
+<body>
+    <form id="researchForm" method="post">
+        <div>
+            <h3>Add Research</h3>
+            <h4>Author</h4>
+            <table>
+                <tr>
+                    <td>Title: </td>
+                    <td> 
+                        <select id="TitleDropDown">
+                            <option value="Mr">Mr.</option>
+                            <option value="Mrs">Mrs.</option>
+                            <option value="Miss">Miss.</option>
+                            <option value="Dr">Dr.</option>
+                            <option value="Prof">Prof.</option>
+                            <option value="AssocProf">Assoc. Prof.</option>
+                         </select> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Firstname: </td>
+                    <td> <input ID="FnameTextBox"/> </td>
+                </tr>
+                <tr>
+                    <td>Surname: </td>
+                    <td> <input ID="SurnameTextBox"/> </td>
+                </tr>
+                <tr>
+                    <td>School: </td>
+                    <td>
+                        <select id="SchoolDropDown">
+                            <option value="SchoolOfComputing">School of Computing, Engineering &amp; Mathematics</option>
+                            <option value="SchoolOfEducation">School of Education</option>
+                            <option value="SchoolOfBusiness">School of Business</option>
+                            <option value="SchoolOfHumanities">School of Humanities &amp; Art</option>
+                            <option value="SchoolOfLaw">School of Law</option>
+                            <option value="SchoolOfMedicine">School of Medicine</option>
+                            <option value="SchoolOfNursing">School of Nursing &amp; Midwifery</option>
+                            <option value="SchoolOfPsychology">School of Social Science &amp; Phsychology</option>
+                            <option value="SchoolOfScience">School of  Science &amp; Health</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                <td>Grant Amount: $</td>
+                    <td> <input id="GrantTextBox" pattern="[0-9]+[.]*[0-9]{2}" title="Currency Format XXX.XX"/> </td>
+                </tr>
+            </table>
+
+        </div>
+        <br/>
+        <Button ID="Submit">Submit</Button> &nbsp <Button ID="Clear">Clear</Button>
+    </form>
+</body>
+</html>
