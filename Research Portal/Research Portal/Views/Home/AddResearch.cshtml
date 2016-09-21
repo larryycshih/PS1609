@@ -15,30 +15,34 @@
             <h4>Author</h4>
             <table>
                 <tr>
-                    <td>Title: </td>
+                    <td>Title:</td>
                     <td> 
-                        <select id="TitleDropDown">
+                        <select id="TitleDropDown" class="form-control">
                             <option value="Mr">Mr.</option>
                             <option value="Mrs">Mrs.</option>
                             <option value="Miss">Miss.</option>
                             <option value="Dr">Dr.</option>
                             <option value="Prof">Prof.</option>
                             <option value="AssocProf">Assoc. Prof.</option>
-                         </select> 
+                        </select> 
                     </td>
                 </tr>
                 <tr>
                     <td>Firstname: </td>
-                    <td> <input ID="FnameTextBox"/> </td>
+                    <td><input type="text" class="form-control" id="FnameTextBox" pattern="[A-Za-z ,.'-]+" title="Must be a valid name"/> </td>
                 </tr>
                 <tr>
                     <td>Surname: </td>
-                    <td> <input ID="SurnameTextBox"/> </td>
+                    <td> <input type="text" class="form-control" id="SurnameTextBox" pattern="[A-Za-z ,.'-]+" title="Must be a valid name" /> </td>
+                </tr>
+                <tr>
+                    <td>Author's Email (Prefer WSU): </td>
+                    <td> <input type="email" id="EmailTextBox" class="form-control" title="Must be a valid Email"/> </td>
                 </tr>
                 <tr>
                     <td>School: </td>
                     <td>
-                        <select id="SchoolDropDown">
+                        <select id="SchoolDropDown" class="form-control">
                             <option value="SchoolOfComputing">School of Computing, Engineering &amp; Mathematics</option>
                             <option value="SchoolOfEducation">School of Education</option>
                             <option value="SchoolOfBusiness">School of Business</option>
@@ -52,18 +56,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Grant Amount: $</td>
-                    <td> <input id="GrantTextBox" pattern="[0-9]+[.]*[0-9]{2}" title="Currency Format XXX.XX"/> </td>
+                    <td>Grant Amount: (dollar amount)</td>
+                    <td><input id="GrantTextBox" pattern="[0-9]+[.]*[0-9]{2}" title="Currency Format XXX.XX" class="form-control" /> </td>
                 </tr>
                 <tr>
                     <td>Research File: </td>
-                    <td> <input type="file" id="ResearchInput">  </td>
+                    <td> <input type="file" id="ResearchInput" accept=".pdf,.doc,.docx"/> </td>
                 </tr>
             </table>
-
         </div>
         <br/>
-        <Button ID="Submit">Submit</Button> &nbsp <Button ID="Clear">Clear</Button>
+        <button id="Submit" class="btn btn-success">Submit</button> &nbsp <button id="Clear" type="reset" class="btn btn-warning">Clear</button>
     </form>
 </body>
 </html>
