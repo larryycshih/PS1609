@@ -1,5 +1,24 @@
-﻿@{
+﻿@using WebMatrix.Data;
+@{
     ViewBag.Title = "Add Research";
+
+    //Form Code
+    var title = "";
+    var firstname = "";
+    var surname = "";
+
+    if(IsPost){
+        
+        title = Request.Form["title"];
+        firstname = Request.Form["firstname"];
+        surname = Request.Form["surname"];
+
+        var db = Database.Open("Database1Entities1");
+        var insertCommand = "INSERT INTO Author (Title, Genre, Year) VALUES(@0, @1, @2)";
+        db.Execute(insertCommand, title, firstname, surname);
+        Response.Redirect("~/Author"); //stop against SQL injections
+    }
+
 }
 
 <!DOCTYPE html>
@@ -17,7 +36,7 @@
                 <tr>
                     <td>Title:</td>
                     <td> 
-                        <select id="TitleDropDown" class="form-control">
+                        <select id="@Request.Form["title"]" class="form-control">
                             <option value="Mr">Mr.</option>
                             <option value="Mrs">Mrs.</option>
                             <option value="Miss">Miss.</option>
@@ -29,11 +48,11 @@
                 </tr>
                 <tr>
                     <td>Firstname: </td>
-                    <td><input type="text" class="form-control" id="FnameTextBox" pattern="[A-Za-z ,.'-]+" title="Must be a valid name"/> </td>
+                    <td><input type="text" class="form-control" id="@Request.Form["firstname"]"  pattern="[A-Za-z ,.'-]+" title="Must be a valid name" /> </td>
                 </tr>
                 <tr>
                     <td>Surname: </td>
-                    <td> <input type="text" class="form-control" id="SurnameTextBox" pattern="[A-Za-z ,.'-]+" title="Must be a valid name" /> </td>
+                    <td> <input type="text" class="form-control" id="@Request.Form["surname"]" pattern="[A-Za-z ,.'-]+" title="Must be a valid name" /> </td>
                 </tr>
                 <tr>
                     <td>Author's Email (Prefer WSU): </td>
