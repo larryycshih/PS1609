@@ -16,7 +16,7 @@ textarea,
 select {
     max-width: 350px;
     min-width: 250px;
-    padding: 1px;
+    padding: 8px;
     margin: 5px;
     font-size: 15px;
 
