@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f579afee8fc7476e9b196467f3c887eb" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model.Author" Width="1.5" PointX="0.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Record" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Research" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.School" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.ResearchAuthor" Width="1.5" PointX="6.875" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.AuthorResearchAuthor" />
+        <AssociationConnector Association="Database1Model.ResearchRecord" />
+        <AssociationConnector Association="Database1Model.ResearchResearchAuthor" />
+        <AssociationConnector Association="Database1Model.SchoolResearch" />
+        <AssociationConnector Association="Database1Model.SchoolAuthor" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

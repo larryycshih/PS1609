@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="authorID" />
+          </Key>
+          <Property Name="authorID" Type="int" Nullable="false" />
+          <Property Name="title" Type="nchar" MaxLength="10" />
+          <Property Name="fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="schoolID" Type="int" />
+          <Property Name="telephone" Type="int" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="mobile" Type="int" />
+          <Property Name="university" Type="nvarchar" MaxLength="50" />
+          <Property Name="campus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="recordID" />
+          </Key>
+          <Property Name="recordID" Type="int" Nullable="false" />
+          <Property Name="researchID" Type="int" />
+          <Property Name="fileID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Research">
+          <Key>
+            <PropertyRef Name="researchID" />
+          </Key>
+          <Property Name="researchID" Type="int" Nullable="false" />
+          <Property Name="title" Type="nchar" MaxLength="10" />
+          <Property Name="schoolID" Type="int" />
+          <Property Name="publishedDate" Type="date" />
+          <Property Name="subject" Type="nvarchar" MaxLength="50" />
+          <Property Name="grants" Type="float" />
+          <Property Name="views" Type="int" />
+          <Property Name="downloads" Type="int" />
+          <Property Name="abstract" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'L:\PS1609\RESEARCH PORTAL\RESEARCH PORTAL\APP_DATA\DATABASE1.MDF.dbo.ResearchAuthor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ResearchAuthor">
+          <Key>
+            <PropertyRef Name="researchID" />
+            <PropertyRef Name="authorID" />
+          </Key>
+          <Property Name="researchID" Type="int" Nullable="false" />
+          <Property Name="authorID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="schoolID" />
+          </Key>
+          <Property Name="schoolID" Type="int" Nullable="false" />
+          <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+          <Property Name="disciplineName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Record__research__34C8D9D1">
+          <End Role="Research" Type="Self.Research" Multiplicity="0..1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Research">
+              <PropertyRef Name="researchID" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="researchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Author_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="schoolID" />
+            </Principal>
+            <Dependent Role="Author">
+              <PropertyRef Name="schoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Research_School">
+          <End Role="School" Type="Self.School" Multiplicity="0..1" />
+          <End Role="Research" Type="Self.Research" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="schoolID" />
+            </Principal>
+            <Dependent Role="Research">
+              <PropertyRef Name="schoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResearchAuthor_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="ResearchAuthor" Type="Self.ResearchAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="authorID" />
+            </Principal>
+            <Dependent Role="ResearchAuthor">
+              <PropertyRef Name="authorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResearchAuthor_Research">
+          <End Role="Research" Type="Self.Research" Multiplicity="1" />
+          <End Role="ResearchAuthor" Type="Self.ResearchAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Research">
+              <PropertyRef Name="researchID" />
+            </Principal>
+            <Dependent Role="ResearchAuthor">
+              <PropertyRef Name="researchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Research" EntityType="Self.Research" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResearchAuthor" EntityType="Self.ResearchAuthor" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ResearchAuthor].[researchID] AS [researchID], 
+    [ResearchAuthor].[authorID] AS [authorID]
+    FROM [dbo].[ResearchAuthor] AS [ResearchAuthor]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Record__research__34C8D9D1" Association="Self.FK__Record__research__34C8D9D1">
+            <End Role="Research" EntitySet="Research" />
+            <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Author_School" Association="Self.FK_Author_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="Author" EntitySet="Author" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Research_School" Association="Self.FK_Research_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="Research" EntitySet="Research" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResearchAuthor_Author" Association="Self.FK_ResearchAuthor_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="ResearchAuthor" EntitySet="ResearchAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResearchAuthor_Research" Association="Self.FK_ResearchAuthor_Research">
+            <End Role="Research" EntitySet="Research" />
+            <End Role="ResearchAuthor" EntitySet="ResearchAuthor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="authorID" />
+          </Key>
+          <Property Name="authorID" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="schoolID" Type="Int32" />
+          <Property Name="telephone" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="Int32" />
+          <Property Name="university" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="campus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ResearchAuthors" Relationship="Database1Model.AuthorResearchAuthor" FromRole="Author" ToRole="ResearchAuthor" />
+          <NavigationProperty Name="School" Relationship="Database1Model.SchoolAuthor" FromRole="Author" ToRole="School" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="recordID" />
+          </Key>
+          <Property Name="recordID" Type="Int32" Nullable="false" />
+          <Property Name="researchID" Type="Int32" Nullable="false" />
+          <Property Name="fileID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Research" Relationship="Database1Model.ResearchRecord" FromRole="Record" ToRole="Research" />
+          </EntityType>
+        <EntityType Name="Research">
+          <Key>
+            <PropertyRef Name="researchID" />
+          </Key>
+          <Property Name="researchID" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="schoolID" Type="Int32" />
+          <Property Name="publishedDate" Type="DateTime" Precision="0" />
+          <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="grants" Type="Double" />
+          <Property Name="views" Type="Int32" />
+          <Property Name="downloads" Type="Int32" />
+          <Property Name="abstract" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Records" Relationship="Database1Model.ResearchRecord" FromRole="Research" ToRole="Record" />
+          <NavigationProperty Name="ResearchAuthors" Relationship="Database1Model.ResearchResearchAuthor" FromRole="Research" ToRole="ResearchAuthor" />
+          <NavigationProperty Name="School" Relationship="Database1Model.SchoolResearch" FromRole="Research" ToRole="School" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="schoolID" />
+          </Key>
+          <Property Name="schoolID" Type="Int32" Nullable="false" />
+          <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="disciplineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Researches" Relationship="Database1Model.SchoolResearch" FromRole="School" ToRole="Research" />
+          <NavigationProperty Name="Authors" Relationship="Database1Model.SchoolAuthor" FromRole="School" ToRole="Author" />
+        </EntityType>
+        <EntityType Name="ResearchAuthor">
+          <Key>
+            <PropertyRef Name="researchID" />
+            <PropertyRef Name="authorID" />
+          </Key>
+          <Property Name="researchID" Type="Int32" Nullable="false" />
+          <Property Name="authorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Database1Model.AuthorResearchAuthor" FromRole="ResearchAuthor" ToRole="Author" />
+          <NavigationProperty Name="Research" Relationship="Database1Model.ResearchResearchAuthor" FromRole="ResearchAuthor" ToRole="Research" />
+        </EntityType>
+        <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Records" EntityType="Self.Record" />
+          <EntitySet Name="Researches" EntityType="Self.Research" />
+          <EntitySet Name="Schools" EntityType="Self.School" />
+          <EntitySet Name="ResearchAuthors" EntityType="Self.ResearchAuthor" />
+          <AssociationSet Name="AuthorResearchAuthor" Association="Database1Model.AuthorResearchAuthor">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="ResearchAuthor" EntitySet="ResearchAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="ResearchRecord" Association="Database1Model.ResearchRecord">
+            <End Role="Research" EntitySet="Researches" />
+            <End Role="Record" EntitySet="Records" />
+          </AssociationSet>
+          <AssociationSet Name="ResearchResearchAuthor" Association="Database1Model.ResearchResearchAuthor">
+            <End Role="Research" EntitySet="Researches" />
+            <End Role="ResearchAuthor" EntitySet="ResearchAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolResearch" Association="Database1Model.SchoolResearch">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Research" EntitySet="Researches" />
+          </AssociationSet>
+          <AssociationSet Name="SchoolAuthor" Association="Database1Model.SchoolAuthor">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Author" EntitySet="Authors" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="AuthorResearchAuthor">
+          <End Type="Database1Model.Author" Role="Author" Multiplicity="1" />
+          <End Type="Database1Model.ResearchAuthor" Role="ResearchAuthor" Multiplicity="*" />
+        </Association>
+        <Association Name="ResearchRecord">
+          <End Type="Database1Model.Research" Role="Research" Multiplicity="1" />
+          <End Type="Database1Model.Record" Role="Record" Multiplicity="*" />
+        </Association>
+        <Association Name="ResearchResearchAuthor">
+          <End Type="Database1Model.Research" Role="Research" Multiplicity="1" />
+          <End Type="Database1Model.ResearchAuthor" Role="ResearchAuthor" Multiplicity="*" />
+        </Association>
+        <Association Name="SchoolResearch">
+          <End Type="Database1Model.School" Role="School" Multiplicity="1" />
+          <End Type="Database1Model.Research" Role="Research" Multiplicity="*" />
+        </Association>
+        <Association Name="SchoolAuthor">
+          <End Type="Database1Model.School" Role="School" Multiplicity="1" />
+          <End Type="Database1Model.Author" Role="Author" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities1">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="Database1Model.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="authorID" ColumnName="authorID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="university" ColumnName="university" />
+                <ScalarProperty Name="campus" ColumnName="campus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Records">
+            <EntityTypeMapping TypeName="Database1Model.Record">
+              <MappingFragment StoreEntitySet="Record">
+                <ScalarProperty Name="recordID" ColumnName="recordID" />
+                <ScalarProperty Name="researchID" ColumnName="researchID" />
+                <ScalarProperty Name="fileID" ColumnName="fileID" />
+              </MappingFragment>
+              <MappingFragment StoreEntitySet="Research">
+                <ScalarProperty Name="researchID" ColumnName="researchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Researches">
+            <EntityTypeMapping TypeName="Database1Model.Research">
+              <MappingFragment StoreEntitySet="Research">
+                <ScalarProperty Name="researchID" ColumnName="researchID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+                <ScalarProperty Name="publishedDate" ColumnName="publishedDate" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="grants" ColumnName="grants" />
+                <ScalarProperty Name="views" ColumnName="views" />
+                <ScalarProperty Name="downloads" ColumnName="downloads" />
+                <ScalarProperty Name="abstract" ColumnName="abstract" />
+              </MappingFragment>
+              <MappingFragment StoreEntitySet="ResearchAuthor">
+                <ScalarProperty Name="researchID" ColumnName="researchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="Database1Model.School">
+              <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+                <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+                <ScalarProperty Name="disciplineName" ColumnName="disciplineName" />
+              </MappingFragment>
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResearchAuthors">
+            <EntityTypeMapping TypeName="Database1Model.ResearchAuthor">
+              <MappingFragment StoreEntitySet="ResearchAuthor">
+                <ScalarProperty Name="researchID" ColumnName="researchID" />
+                <ScalarProperty Name="authorID" ColumnName="authorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AuthorResearchAuthor" TypeName="Database1Model.AuthorResearchAuthor" StoreEntitySet="Author">
+            <EndProperty Name="ResearchAuthor">
+              <ScalarProperty Name="authorID" ColumnName="authorID" />
+            </EndProperty>
+            <EndProperty Name="Author">
+              <ScalarProperty Name="authorID" ColumnName="authorID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
