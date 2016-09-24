@@ -11,30 +11,34 @@ namespace Research_Portal.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
-    public partial class Research
+    public class Research
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Research()
-        {
-            this.Records = new HashSet<Record>();
-            this.ResearchAuthors = new HashSet<ResearchAuthor>();
-        }
-    
+      
         public int researchID { get; set; }
+
+        [Required]
         public string title { get; set; }
-        public Nullable<int> schoolID { get; set; }
-        public Nullable<System.DateTime> publishedDate { get; set; }
+
+        [Required]
+        public int schoolID { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime publishedDate { get; set; }
+
         public string subject { get; set; }
-        public Nullable<double> grants { get; set; }
-        public Nullable<int> views { get; set; }
-        public Nullable<int> downloads { get; set; }
-        public string @abstract { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Record> Records { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResearchAuthor> ResearchAuthors { get; set; }
+
+        public Decimal grants { get; set; }
+
+        public int views { get; set; }
+
+        public int downloads { get; set; }
+
+        public string abstracts { get; set; }
+
+        public virtual Record Record { get; set; }
+        public virtual ResearchAuthor ResearchAuthor { get; set; }
         public virtual School School { get; set; }
     }
 }

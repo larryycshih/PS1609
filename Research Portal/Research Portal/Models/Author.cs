@@ -11,28 +11,47 @@ namespace Research_Portal.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Author
+    using System.ComponentModel.DataAnnotations;
+
+    public  class Author
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Author()
-        {
-            this.ResearchAuthors = new HashSet<ResearchAuthor>();
-        }
-    
+
+
         public int authorID { get; set; }
         public string title { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "First Name")]
         public string fname { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
         public string lname { get; set; }
-        public Nullable<int> schoolID { get; set; }
-        public Nullable<int> telephone { get; set; }
+
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            { return fname + lname; }
+        }
+
+
+        public int schoolID { get; set; }
+
+        public int telephone { get; set; }
+
         public string email { get; set; }
-        public Nullable<int> mobile { get; set; }
+
+        public int mobile { get; set; }
+
         public string university { get; set; }
+
         public string campus { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ResearchAuthor> ResearchAuthors { get; set; }
+
+
+        public virtual ResearchAuthor ResearchAuthor { get; set; }
         public virtual School School { get; set; }
     }
 }

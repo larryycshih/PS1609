@@ -11,9 +11,11 @@ namespace Research_Portal.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
-    public partial class Record
+    public class Record
     {
+        [Required]
         public int recordID { get; set; }
         public int researchID { get; set; }
         public string fileID { get; set; }

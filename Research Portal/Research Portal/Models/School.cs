@@ -12,22 +12,15 @@ namespace Research_Portal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class School
+    public  class School
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public School()
-        {
-            this.Researches = new HashSet<Research>();
-            this.Authors = new HashSet<Author>();
-        }
     
         public int schoolID { get; set; }
         public string schoolName { get; set; }
         public string disciplineName { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+       
         public virtual ICollection<Research> Researches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Author> Authors { get; set; }
     }
 }

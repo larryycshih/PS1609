@@ -11,13 +11,19 @@ namespace Research_Portal.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
-    public partial class ResearchAuthor
+    public class ResearchAuthor
     {
+        [Key]
+        [ForeignKey("Research")]
         public int researchID { get; set; }
+        [Key]
+        [ForeignKey("Author")]
         public int authorID { get; set; }
     
-        public virtual Author Author { get; set; }
+        public virtual ICollection<Author> Author { get; set; }
         public virtual Research Research { get; set; }
     }
 }
