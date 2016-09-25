@@ -49,14 +49,21 @@ input[type="checkbox"].input-validation-error {
 
 .feeds{
     padding-top:940px;
-    padding-left:20px;
+    padding-left:0px;
     text-align:center;
-    padding-right:20px;
+    padding-right:0px;
     padding-bottom:30px;
     height:200px;
+    bottom:300px;
 }
 
-.footer1{
-    height:100px;
-    background-color:black;
+footer{
+ 
+   
+    height: 110px;
+    border-top:0.2px solid black;
+    color: black;
+    bottom:0px;
+    padding-top:3px;
+
 }
