@@ -12,7 +12,7 @@
     @*@Styles.Render("~/Content/w3.css")*@
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("BubbleTree_Dependencies",required: false)
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -45,7 +45,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div class:"footer1">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </div>
         </footer>
     </div>
 
