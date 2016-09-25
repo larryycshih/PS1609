@@ -11,12 +11,20 @@ namespace Research_Portal.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public  class School
     {
     
         public int schoolID { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Display(Name="School Name")]
         public string schoolName { get; set; }
+
+        [StringLength(50)]
+        [Display(Name = "Discipline Name")]
         public string disciplineName { get; set; }
     
        
