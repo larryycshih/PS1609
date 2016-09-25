@@ -46,3 +46,12 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.feeds{
+    padding-top:940px;
+    padding-left:20px;
+    text-align:center;
+    padding-right:20px;
+    padding-bottom:30px;
+    height:200px;
+}
