@@ -13,6 +13,6 @@ namespace Research_Portal.Models
         public ApplicationDbContext()
             : base("DefaultConnection"){} 
 
-        public DbSet<School> School { get; set; }
+        
     }
 }

@@ -15,43 +15,10 @@ namespace Research_Portal.Controllers
         // GET: Schools
         public ActionResult Index()
         {
-            try
-            {
-                Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+
+
                 return View();
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
-            //return View();
-        }
 
-        public ActionResult InsertDetail()
-        {
-            try
-            {
-                for (int counter = 0; counter < 5; counter++)
-                {
-                    var emp = new School()
-                    {
-                        schoolName = "schoolName " + counter,
-  
-                    };
-
-                    using (var context = new ApplicationDbContext())
-                    {
-                        context.School.Add(emp);
-                        context.SaveChanges();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Json(true);
         }
 
        
@@ -73,17 +40,16 @@ namespace Research_Portal.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-                
+                using (ProjectDbContext context = new ProjectDbContext())
+                {
+                    context.School.Add(new School { schoolName = "school 1" });
+                }
+            }
+            
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
                 return View();
-            }
         }
 
         // GET: Schools/Edit/5
