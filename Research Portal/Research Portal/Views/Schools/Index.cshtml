@@ -20,7 +20,10 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@{
+
+    try {
+    foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.schoolName)
@@ -35,5 +38,6 @@
         </td>
     </tr>
 }
-
+    }catch(Exception e){}
+    }
 </table>

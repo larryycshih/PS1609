@@ -16,7 +16,7 @@ namespace Research_Portal.Models
     public class Research
     {
       
-        public int researchID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         public string title { get; set; }

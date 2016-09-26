@@ -268,6 +268,7 @@
     <Content Include="Views\Schools\Create.cshtml" />
     <Content Include="Views\Schools\Index.cshtml" />
     <Content Include="Views\Schools\Details.cshtml" />
+    <Content Include="Views\Schools\InsertDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

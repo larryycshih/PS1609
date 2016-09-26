@@ -17,7 +17,7 @@ namespace Research_Portal.Models
     public  class School
     {
     
-        public int schoolID { get; set; }
+        public int ID { get; set; }
         [Required]
         [StringLength(50)]
         [Display(Name="School Name")]

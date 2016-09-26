@@ -8,7 +8,7 @@ namespace Research_Portal.Models
     public class Record
     {
         [Required]
-        public int recordID { get; set; }
+        public int ID { get; set; }
         public int researchID { get; set; }
         public string fileID { get; set; }
     

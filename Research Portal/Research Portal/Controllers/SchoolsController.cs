@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Research_Portal.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,21 +10,62 @@ namespace Research_Portal.Controllers
 {
     public class SchoolsController : Controller
     {
+
+     
         // GET: Schools
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+                return View();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            //return View();
         }
 
-        // GET: Schools/Details/5
-        public ActionResult Details(int id)
+        public ActionResult InsertDetail()
         {
-            return View();
+            try
+            {
+                for (int counter = 0; counter < 5; counter++)
+                {
+                    var emp = new School()
+                    {
+                        schoolName = "schoolName " + counter,
+  
+                    };
+
+                    using (var context = new ApplicationDbContext())
+                    {
+                        context.School.Add(emp);
+                        context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return Json(true);
+        }
+
+       
+        // GET: Schools/Details/
+        public ActionResult Details()
+        {
+            var stub = new School { schoolName = "thisefe" };
+            return View(stub);
         }
 
         // GET: Schools/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -33,6 +76,7 @@ namespace Research_Portal.Controllers
             try
             {
                 // TODO: Add insert logic here
+                
 
                 return RedirectToAction("Index");
             }
@@ -85,5 +129,8 @@ namespace Research_Portal.Controllers
                 return View();
             }
         }
+    
+    
+
     }
 }

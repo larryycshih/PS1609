@@ -16,6 +16,8 @@ namespace Research_Portal.Models
     
     public class ResearchAuthor
     {
+
+        
         [Key]
         [ForeignKey("Research")]
         public int researchID { get; set; }
