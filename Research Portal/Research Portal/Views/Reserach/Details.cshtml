@@ -1,0 +1,82 @@
+﻿@model Research_Portal.Models.Research
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Research</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schoolID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schoolID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.publishedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.publishedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.grants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grants)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.views)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.views)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.downloads)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.downloads)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.abstracts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.abstracts)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.researchID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
