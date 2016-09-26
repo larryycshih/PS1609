@@ -13,7 +13,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Research_Portal</RootNamespace>
-    <AssemblyName>WSU Scholar</AssemblyName>
+    <AssemblyName>Research Portal</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -191,25 +191,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SchoolsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-<<<<<<< HEAD
-    <Compile Include="Models\Author.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Record.cs" />
-    <Compile Include="Models\Research.cs" />
-    <Compile Include="Models\ResearchAuthor.cs" />
-    <Compile Include="Models\School.cs" />
-=======
-    <Compile Include="Models\IdentityModels.cs" />
->>>>>>> master
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -229,10 +223,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
-<<<<<<< HEAD
-=======
     <Content Include="ReleaseNotes.txt" />
->>>>>>> master
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bubbletree.js" />
@@ -284,11 +275,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AddResearch.cshtml" />
-    <Content Include="Views\Reserach\Details.cshtml" />
-    <Content Include="Views\Schools\Create.cshtml" />
-    <Content Include="Views\Schools\Index.cshtml" />
-    <Content Include="Views\Schools\Details.cshtml" />
-    <Content Include="Views\Schools\InsertDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -296,9 +282,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

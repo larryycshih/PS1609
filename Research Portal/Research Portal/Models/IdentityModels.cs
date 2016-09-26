@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
 
 namespace Research_Portal.Models
 {
@@ -11,8 +10,8 @@ namespace Research_Portal.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection"){} 
-
-        public DbSet<School> School { get; set; }
+            : base("DefaultConnection")
+        {
+        }
     }
 }
