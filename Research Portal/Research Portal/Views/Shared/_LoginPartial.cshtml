@@ -18,5 +18,9 @@ else
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+        <li><div class="w3-card col-md-4">
+             <input type="text" class="search-query form-control" placeholder="Search" />
+            </div>
+        </li>
+</ul>
 }

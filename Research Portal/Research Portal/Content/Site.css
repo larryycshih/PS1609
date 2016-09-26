@@ -3,19 +3,10 @@
     padding-bottom: 20px;
 }
 
-footer {
-
-    vertical-align: text-bottom;
-}
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
-
-div.w3-card col-md-4 {
-    background-color: white;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -25,7 +16,7 @@ textarea,
 select {
     max-width: 350px;
     min-width: 250px;
-    padding: 1px;
+    padding: 8px;
     margin: 5px;
     font-size: 15px;
 
@@ -54,4 +45,25 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+.feeds{
+    padding-top:940px;
+    padding-left:0px;
+    text-align:center;
+    padding-right:0px;
+    padding-bottom:30px;
+    height:200px;
+    bottom:300px;
+}
+
+footer{
+ 
+   
+    height: 110px;
+    border-top:0.2px solid black;
+    color: black;
+    bottom:0px;
+    padding-top:3px;
+
 }
