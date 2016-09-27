@@ -198,6 +198,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ProjectDbContext.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Models\Research.cs" />
     <Compile Include="Models\ResearchAuthor.cs" />

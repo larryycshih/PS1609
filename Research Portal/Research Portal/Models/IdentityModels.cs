@@ -15,10 +15,6 @@ namespace Research_Portal.Models
         {
         }
 
-        public DbSet<Author> Author { get; set; }
-        public DbSet<Record> Record { get; set; }
-        public DbSet<Research> Research { get; set; }
-        public DbSet<School> School { get; set; }
-        public DbSet<ResearchAuthor> ResearchAuthor { get; set; }
+        
     }
 }

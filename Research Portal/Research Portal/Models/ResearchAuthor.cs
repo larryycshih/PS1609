@@ -18,10 +18,9 @@ namespace Research_Portal.Models
     {
 
         
-        [Key]
         [ForeignKey("Research")]
         public int researchID { get; set; }
-        [Key]
+
         [ForeignKey("Author")]
         public int authorID { get; set; }
     

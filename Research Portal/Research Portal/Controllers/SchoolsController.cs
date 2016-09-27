@@ -14,11 +14,18 @@ namespace Research_Portal.Controllers
         {
             return View();
         }
+                
 
-        // GET: Schools/Details/5
-        public ActionResult Details(int id)
+                return View();
+
+        }
+
+       
+        // GET: Schools/Details/
+        public ActionResult Details()
         {
-            return View();
+            var stub = new School { schoolName = "thisefe" };
+            return View(stub);
         }
 
         // GET: Schools/Create
@@ -33,25 +40,15 @@ namespace Research_Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new ApplicationDbContext();
-                var s = new School { schoolName = "ddd", disciplineName = "feff" };
-                db.School.Add(s);
-                db.SaveChanges();
-
-
-            }
-
-            try
+                using (ProjectDbContext context = new ProjectDbContext())
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                    context.School.Add(new School { schoolName = "school 1" });
+                }
             }
-            catch
-            {
+                
+
                 return View();
             }
-        }
 
         // GET: Schools/Edit/5
         public ActionResult Edit(int id)
