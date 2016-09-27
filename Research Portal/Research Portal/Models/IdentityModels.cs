@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace Research_Portal.Models
 {
@@ -13,5 +14,11 @@ namespace Research_Portal.Models
             : base("DefaultConnection")
         {
         }
+
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Record> Record { get; set; }
+        public DbSet<Research> Research { get; set; }
+        public DbSet<School> School { get; set; }
+        public DbSet<ResearchAuthor> ResearchAuthor { get; set; }
     }
 }

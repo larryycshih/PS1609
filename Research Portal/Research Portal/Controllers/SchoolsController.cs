@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Research_Portal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +31,16 @@ namespace Research_Portal.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            if (ModelState.IsValid)
+            {
+                var db = new ApplicationDbContext();
+                var s = new School { schoolName = "ddd", disciplineName = "feff" };
+                db.School.Add(s);
+                db.SaveChanges();
+
+
+            }
+
             try
             {
                 // TODO: Add insert logic here
