@@ -14,13 +14,7 @@ namespace Research_Portal.Controllers
         {
             return View();
         }
-                
-
-                return View();
-
-        }
-
-       
+    
         // GET: Schools/Details/
         public ActionResult Details()
         {
