@@ -1,7 +1,6 @@
 ﻿using Research_Portal.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,12 +9,12 @@ namespace Research_Portal.Controllers
 {
     public class SchoolsController : Controller
     {
-
-     
         // GET: Schools
         public ActionResult Index()
         {
-
+            return View();
+        }
+                
 
                 return View();
 
@@ -32,7 +31,6 @@ namespace Research_Portal.Controllers
         // GET: Schools/Create
         public ActionResult Create()
         {
-
             return View();
         }
 
@@ -43,14 +41,14 @@ namespace Research_Portal.Controllers
             if (ModelState.IsValid)
             {
                 using (ProjectDbContext context = new ProjectDbContext())
-                {
+            {
                     context.School.Add(new School { schoolName = "school 1" });
                 }
             }
-            
+                
 
                 return View();
-        }
+            }
 
         // GET: Schools/Edit/5
         public ActionResult Edit(int id)
@@ -95,8 +93,5 @@ namespace Research_Portal.Controllers
                 return View();
             }
         }
-    
-    
-
     }
 }

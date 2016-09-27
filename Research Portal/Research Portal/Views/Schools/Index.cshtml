@@ -20,10 +20,7 @@
         <th></th>
     </tr>
 
-@{
-
-    try {
-    foreach (var item in Model) {
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.schoolName)
@@ -32,12 +29,11 @@
             @Html.DisplayFor(modelItem => item.disciplineName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.schoolID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.schoolID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.schoolID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
-    }catch(Exception e){}
-    }
+
 </table>
