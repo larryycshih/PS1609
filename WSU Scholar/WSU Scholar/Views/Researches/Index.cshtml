@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WSU_Scholar.Models.Research>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Record.fileID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.School.schoolName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.publishedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grants)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.views)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.downloads)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.abstracts)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Record.fileID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.School.schoolName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.publishedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grants)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.views)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.downloads)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.abstracts)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
