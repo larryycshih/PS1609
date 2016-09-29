@@ -182,6 +182,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bubble_tree\bubbletree.css" />
+    <Content Include="Content\bubble_tree\page.css" />
+    <Content Include="Content\bubble_tree\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -189,6 +192,13 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bubble_tree\bubbletree.js" />
+    <Content Include="Scripts\bubble_tree\jquery-migrate.min.js" />
+    <Content Include="Scripts\bubble_tree\jquery.history.js" />
+    <Content Include="Scripts\bubble_tree\jquery.min.js" />
+    <Content Include="Scripts\bubble_tree\jquery.tooltip.min.js" />
+    <Content Include="Scripts\bubble_tree\raphael-min.js" />
+    <Content Include="Scripts\bubble_tree\Tween.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
