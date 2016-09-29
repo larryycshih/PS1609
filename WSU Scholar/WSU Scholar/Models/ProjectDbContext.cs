@@ -8,6 +8,7 @@ namespace WSU_Scholar.Models
 {
     public class ProjectDbContext : DbContext
     {
+        public ProjectDbContext() : base("ProjectDbContext") { }
 
         public DbSet<Author> Author { get; set; }
         public DbSet<Record> Record { get; set; }
