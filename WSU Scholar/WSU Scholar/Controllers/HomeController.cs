@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WSU_Scholar.Models;
 
 namespace WSU_Scholar.Controllers
 {
     public class HomeController : Controller
     {
+        private ProjectDbContext db = new ProjectDbContext();
+        
         public ActionResult Index()
         {
-            return View();
+            
+            return View(db.School.ToList());
         }
 
         public ActionResult About()

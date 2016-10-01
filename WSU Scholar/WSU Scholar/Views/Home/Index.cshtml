@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    
 }
+@model IEnumerable<WSU_Scholar.Models.School>
+
 
 @section scripts{
     <script src="~/Scripts/bubble_tree/bubbletree.js"></script>
@@ -14,25 +17,37 @@
     <link href="~/Content/bubble_tree/page.css" rel="stylesheet" />
     <link href="~/Content/bubble_tree/tooltip.css" rel="stylesheet" />
 
+
+
     <script type="text/javascript">
 
-        $(function () {
-            var data = {
-                label: 'Total',
-                amount: 100,
-                color: '#0066bb',  // color for root node, will be inherited by children
-                children: [
-                    { label: 'First child', amount: 30 },
-                    { label: 'Second child', amount: 40 },
-                    { label: 'Third child', amount: 30, color: '#ff3300' }
-                ]
-            };
+    $(function () {
+        var data = {
+            label: 'Total',
+            amount: 100,
+            color: '#0066bb',  // color for root node, will be inherited by children
+            children: [
+                @{
+                    Random rand = new Random();
+                    int i;
+                    foreach (var item in Model)
+                    {
+                       i = rand.Next(30);
+                       <text>
+                    {label: '@item.schoolName', amount: @i},
+                    </text>
+                    }
+                 }
+    ]
 
-            new BubbleTree({
-                data: data,
-                container: '.bubbletree'
-            });
-        });
+    };
+
+
+    new BubbleTree({
+        data: data,
+        container: '.bubbletree'
+    });
+    });
 
     </script>
 }
