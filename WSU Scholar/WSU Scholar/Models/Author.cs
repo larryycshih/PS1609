@@ -6,10 +6,15 @@ using System.Web;
 
 namespace WSU_Scholar.Models
 {
+    public enum Title
+    {
+        Mr, Ms,  Mrs, Miss, Master, Dr, Prof
+    }
+   
     public class Author
     {
         public int ID { get; set; }
-        public string title { get; set; }
+        public Title? title { get; set; }
 
         [Required]
         [StringLength(50)]
