@@ -15,10 +15,29 @@ namespace WSU_Scholar.Controllers
         private ProjectDbContext db = new ProjectDbContext();
 
         // GET: Researches
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var research = db.Research.Include(r => r.Record).Include(r => r.School);
-            return View(research.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var Research = from r in db.Research
+                           select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Research = Research.Where(s => s.title.Contains(searchString)
+                                       || s.title.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "date_desc":
+                    Research = Research.OrderByDescending(r => r.publishedDate);
+                    break;
+                case "Date":
+                    Research = Research.OrderBy(r => r.publishedDate);
+                    break;
+            }
+            return View(Research.ToList());
         }
 
         // GET: Researches/Details/5

@@ -6,9 +6,18 @@
 
 <h2>Index</h2>
 
-<p>
+<div>
     @Html.ActionLink("Create New", "Create")
-</p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -21,7 +30,7 @@
             @Html.DisplayNameFor(model => model.title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.publishedDate)
+            @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.subject)
