@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.School.schoolName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm })
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.subject)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.grants)
+            @Html.ActionLink("Grant", "Index", new { sortOrder = ViewBag.GrantSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.views)
