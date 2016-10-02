@@ -14,7 +14,7 @@ namespace WSU_Scholar.Controllers
         public ActionResult Index()
         {
             
-            //return View(db.School.ToList());
+            return View(db.School.ToList());
         }
 
         public ActionResult About()
