@@ -18,8 +18,11 @@ namespace WSU_Scholar.Controllers
         public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.SubjectSortParm = sortOrder == "Subject" ? "subject_desc" : "Subject";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.GrantSortParm = sortOrder == "Grant" ? "grant_desc" : "Grant";
+            ViewBag.ViewsSortParm = sortOrder == "Views" ? "views_desc" : "Views";
+            ViewBag.DownloadsSortParm = sortOrder == "Downloads" ? "downloads_desc" : "Downloads";
             var Research = from r in db.Research
                            select r;
 
@@ -31,6 +34,24 @@ namespace WSU_Scholar.Controllers
 
             switch (sortOrder)
             {
+                case "views_desc":
+                    Research = Research.OrderByDescending(r => r.views);
+                    break;
+                case "Views":
+                    Research = Research.OrderBy(r => r.views);
+                    break;
+                case "downloads_desc":
+                    Research = Research.OrderByDescending(r => r.downloads);
+                    break;
+                case "Downloads":
+                    Research = Research.OrderBy(r => r.downloads);
+                    break;
+                case "subject_desc":
+                    Research = Research.OrderByDescending(r => r.subject);
+                    break;
+                case "Subject":
+                    Research = Research.OrderBy(r => r.subject);
+                    break;
                 case "grant_desc":
                     Research = Research.OrderByDescending(r => r.grants);
                     break;

@@ -33,16 +33,16 @@
             @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.subject)
+            @Html.ActionLink("Subject", "Index", new { sortOrder = ViewBag.SubjectSortParm })
         </th>
         <th>
             @Html.ActionLink("Grant", "Index", new { sortOrder = ViewBag.GrantSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.views)
+            @Html.ActionLink("Views", "Index", new { sortOrder = ViewBag.ViewsSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.downloads)
+            @Html.ActionLink("Downloads", "Index", new { sortOrder = ViewBag.DownloadsSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.abstracts)
