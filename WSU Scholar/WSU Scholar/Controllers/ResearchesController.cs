@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using WSU_Scholar.Models;
 
 namespace WSU_Scholar.Controllers
@@ -15,21 +16,36 @@ namespace WSU_Scholar.Controllers
         private ProjectDbContext db = new ProjectDbContext();
 
         // GET: Researches
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewBag.SubjectSortParm = sortOrder == "Subject" ? "subject_desc" : "Subject";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.GrantSortParm = sortOrder == "Grant" ? "grant_desc" : "Grant";
             ViewBag.ViewsSortParm = sortOrder == "Views" ? "views_desc" : "Views";
             ViewBag.DownloadsSortParm = sortOrder == "Downloads" ? "downloads_desc" : "Downloads";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            
             var Research = from r in db.Research
                            select r;
 
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                Research = Research.Where(s => s.title.Contains(searchString)
-                                       || s.title.Contains(searchString));
+                Research = Research.Where(r => r.title.Contains(searchString)
+                                       || r.title.Contains(searchString));
+
             }
 
             switch (sortOrder)
@@ -71,7 +87,10 @@ namespace WSU_Scholar.Controllers
                     Research = Research.OrderBy(r => r.title);
                     break;
             }
-            return View(Research.ToList());
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(Research.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Researches/Details/5

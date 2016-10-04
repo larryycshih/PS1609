@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WSU_Scholar.Models.Research>
+﻿@model PagedList.IPagedList<WSU_Scholar.Models.Research>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -9,10 +11,10 @@
 <div>
     @Html.ActionLink("Create New", "Create")
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Index", "Researches", FormMethod.Get))
     {
         <p>
-            Find by name: @Html.TextBox("SearchString")
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
             <input type="submit" value="Search" />
         </p>
     }
@@ -21,31 +23,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Record.fileID)
+            File ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.School.schoolName)
+            School
         </th>
         <th>
-            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Subject", "Index", new { sortOrder = ViewBag.SubjectSortParm })
+            @Html.ActionLink("Subject", "Index", new { sortOrder = ViewBag.SubjectSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Grant", "Index", new { sortOrder = ViewBag.GrantSortParm })
+            @Html.ActionLink("Grant", "Index", new { sortOrder = ViewBag.GrantSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Views", "Index", new { sortOrder = ViewBag.ViewsSortParm })
+            @Html.ActionLink("Views", "Index", new { sortOrder = ViewBag.ViewsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Downloads", "Index", new { sortOrder = ViewBag.DownloadsSortParm })
+            @Html.ActionLink("Downloads", "Index", new { sortOrder = ViewBag.DownloadsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.abstracts)
+            Absrtract
         </th>
         <th></th>
     </tr>
@@ -88,3 +90,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
