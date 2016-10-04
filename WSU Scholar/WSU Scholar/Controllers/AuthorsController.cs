@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using WSU_Scholar.Models;
 
 namespace WSU_Scholar.Controllers
@@ -15,10 +16,67 @@ namespace WSU_Scholar.Controllers
         private ProjectDbContext db = new ProjectDbContext();
 
         // GET: Authors
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var author = db.Author.Include(a => a.School);
-            return View(author.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.FnameSortParm = sortOrder == "Firstname" ? "fname_desc" : "Firstname";
+            ViewBag.LnameSortParm = String.IsNullOrEmpty(sortOrder) ? "lname_desc" : "";
+            ViewBag.UniSortParm = sortOrder == "University" ? "university_desc" : "University";
+            ViewBag.CampusSortParm = sortOrder == "Campus" ? "campus_desc" : "Campus";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var Author = from a in db.Author
+                           select a;
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                Author = Author.Where(a => a.lname.Contains(searchString)
+                                       || a.lname.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "fname_desc":
+                    Author = Author.OrderByDescending(a => a.campus);
+                    break;
+                case "Firstname":
+                    Author = Author.OrderBy(a => a.campus);
+                    break;
+                case "campus_desc":
+                    Author = Author.OrderByDescending(a => a.campus);
+                    break;
+                case "Campus":
+                    Author = Author.OrderBy(a => a.campus);
+                    break;
+                case "lname_desc":
+                    Author = Author.OrderByDescending(a => a.lname);
+                    break;
+                case "university_desc":
+                    Author = Author.OrderBy(a => a.university);
+                    break;
+                case "University" :
+                    Author = Author.OrderByDescending(a => a.university);
+                    break;
+                default:
+                    Author = Author.OrderBy(a => a.lname);
+                    break;
+
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(Author.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Authors/Details/5

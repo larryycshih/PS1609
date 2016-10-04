@@ -1,42 +1,52 @@
-﻿@model IEnumerable<WSU_Scholar.Models.Author>
-
+﻿@model PagedList.IPagedList<WSU_Scholar.Models.Author>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-<p>
+<div>
     @Html.ActionLink("Create New", "Create")
-</p>
+
+    @using (Html.BeginForm("Index", "Authors", FormMethod.Get))
+    {
+        <p>
+            Find by Surname: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.School.schoolName)
+            School
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.title)
+            Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fname)
+            @Html.ActionLink("Firstname", "Index", new { sortOrder = ViewBag.FnameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lname)
+            @Html.ActionLink("Surname", "Index", new { sortOrder = ViewBag.LnameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.telephone)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            E-mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.mobile)
+            Mobile
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.university)
+            @Html.ActionLink("University", "Index", new { sortOrder = ViewBag.UniSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.campus)
+            @Html.ActionLink("University", "Index", new { sortOrder = ViewBag.CampusSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -79,3 +89,7 @@
 }
 
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
