@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
     
 }
-@model IEnumerable<WSU_Scholar.Models.School>
+@model IEnumerable<WSU_Scholar.Models.SchoolCountViewModel>
 
 
 @section scripts{
@@ -24,29 +24,41 @@
     $(function () {
         var data = {
             label: 'Total',
-            amount: 100,
+            amount: @{
+                int total = 0;
+                foreach (var item in Model) { total += item.count; }
+                <text>@total,</text>
+                }
+                
             color: '#0066bb',  // color for root node, will be inherited by children
             children: [
                 @{
-                    Random rand = new Random();
+                    @*Random rand = new Random();
                     int i;
                     foreach (var item in Model)
                     {
                        i = rand.Next(30);
                        <text>
-                    {label: '@item.schoolName', amount: @i},
+                    {label: '@item.schoolName', amount: @item.},
+                    </text>
+                    }*@
+
+                    foreach (var item in Model)
+                    {
+                    <text>
+                    {label: '@item.schoolName', amount: @item.count},
                     </text>
                     }
                  }
-    ]
+            ]
 
-    };
+        };
 
 
-    new BubbleTree({
-        data: data,
-        container: '.bubbletree'
-    });
+        new BubbleTree({
+            data: data,
+            container: '.bubbletree'
+        });
     });
 
     </script>
@@ -61,7 +73,7 @@
 
 </div>
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -81,4 +93,4 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
-</div>
+</div>*@
