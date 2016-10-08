@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    
+
 }
 @model IEnumerable<WSU_Scholar.Models.SchoolCountViewModel>
 
@@ -21,45 +21,26 @@
 
     <script type="text/javascript">
 
-    $(function () {
-        var data = {
-            label: 'Total',
-            amount: @{
+        $(function () {
+            var data = {
+                label: 'Total',
+                amount: @{
                 int total = 0;
                 foreach (var item in Model) { total += item.count; }
                 <text>@total,</text>
                 }
-                
-            color: '#0066bb',  // color for root node, will be inherited by children
-            children: [
-                @{
-                    @*Random rand = new Random();
-                    int i;
-                    foreach (var item in Model)
-                    {
-                       i = rand.Next(30);
-                       <text>
-                    {label: '@item.schoolName', amount: @item.},
-                    </text>
-                    }*@
-
-                    foreach (var item in Model)
-                    {
-                    <text>
-                    {label: '@item.schoolName', amount: @item.count},
-                    </text>
-                    }
-                 }
-            ]
-
-        };
+                color: '#0066bb',  // color for root node, will be inherited by children
+                children: [
+                    @foreach (var item in Model){<text>{label: '@item.schoolName', amount: @item.count},</text>}
+                ]
+            };
 
 
-        new BubbleTree({
-            data: data,
-            container: '.bubbletree'
+            new BubbleTree({
+                data: data,
+                container: '.bubbletree',
+            });
         });
-    });
 
     </script>
 }
@@ -75,13 +56,34 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <div class="container">
+            <h2>Dynamic Tabs</h2>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h3>HOME</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <h3>Menu 1</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <h3>Menu 2</h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                    <h3>Menu 3</h3>
+                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
