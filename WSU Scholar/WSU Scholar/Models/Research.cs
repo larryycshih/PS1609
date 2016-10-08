@@ -40,4 +40,17 @@ namespace WSU_Scholar.Models
         public virtual ICollection<ResearchAuthor> ResearchAuthor { get; set; }
         public virtual School School { get; set; }
     }
+
+    public class HomeFeedViewModel{
+
+        public string title { get; set; }
+
+        public DateTime publishedDate { get; set; }
+
+        public int views { get; set; }
+
+        public int downloads { get; set; }
+
+        public string abstracts { get; set; }
+    }
 }
