@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<WSU_Scholar.Models.Author>
 @using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
@@ -8,7 +9,10 @@
 <h2>Index</h2>
 
 <div>
-    @Html.ActionLink("Create New", "Create")
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 
     @using (Html.BeginForm("Index", "Authors", FormMethod.Get))
     {
@@ -48,7 +52,16 @@
         <th>
             @Html.ActionLink("University", "Index", new { sortOrder = ViewBag.CampusSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th></th>
+        <th>
+        </th>
+        <th>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.Label("Admin");
+            }
+        </th>
+        <th>
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -81,9 +94,22 @@
             @Html.DisplayFor(modelItem => item.campus)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+            }
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            }
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
         </td>
     </tr>
 }

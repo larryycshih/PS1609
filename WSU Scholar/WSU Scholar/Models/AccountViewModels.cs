@@ -50,7 +50,6 @@ namespace WSU_Scholar.Models
     {
         [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -65,7 +64,6 @@ namespace WSU_Scholar.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -84,7 +82,6 @@ namespace WSU_Scholar.Models
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -105,7 +102,6 @@ namespace WSU_Scholar.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
