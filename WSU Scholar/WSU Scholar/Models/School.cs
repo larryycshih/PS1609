@@ -30,4 +30,12 @@ namespace WSU_Scholar.Models
 
         public int count { get; set; }
     }
+
+    public class HomeModelContainerViewModel
+    {
+        //so something is wrong
+        public IEnumerable<SchoolCountViewModel> schoolCount { get; set; }
+        public IEnumerable<HomeFeedViewModel> homeFeed { get; set; }
+    }
+
 }

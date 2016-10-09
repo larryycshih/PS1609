@@ -75,12 +75,4 @@ namespace WSU_Scholar.Controllers
         }
     }
 
-
-    public class HomeModelContainerViewModel
-    {
-        //so something is wrong
-        public IEnumerable<SchoolCountViewModel> schoolCount { get; set; }
-        public IEnumerable<HomeFeedViewModel> homeFeed { get; set; }
-    }
-
 }

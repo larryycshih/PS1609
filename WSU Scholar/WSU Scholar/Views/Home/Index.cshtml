@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 
 }
-@model IEnumerable<WSU_Scholar.Models.SchoolCountViewModel>
+@model WSU_Scholar.Models.HomeModelContainerViewModel
 
 
 @section scripts{
@@ -26,12 +26,12 @@
                 label: 'Total',
                 amount: @{
                 int total = 0;
-                foreach (var item in Model) { total += item.count; }
+                foreach (var item in Model.schoolCount) { total += item.count; }
                 <text>@total,</text>
                 }
                 color: '#0066bb',  // color for root node, will be inherited by children
                 children: [
-                    @foreach (var item in Model){<text>{label: '@item.schoolName', amount: @item.count},</text>}
+                    @foreach (var item in Model.schoolCount){<text>{label: '@item.schoolName', amount: @item.count},</text>}
                 ]
             };
 
