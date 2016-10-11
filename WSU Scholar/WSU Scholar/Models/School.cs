@@ -20,4 +20,22 @@ namespace WSU_Scholar.Models
 
 
     }
+
+    public class SchoolCountViewModel
+    {
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "School Name")]
+        public string schoolName { get; set; }
+
+        public int count { get; set; }
+    }
+
+    public class HomeModelContainerViewModel
+    {
+        //so something is wrong
+        public IEnumerable<SchoolCountViewModel> schoolCount { get; set; }
+        public IEnumerable<HomeFeedViewModel> homeFeed { get; set; }
+    }
+
 }
