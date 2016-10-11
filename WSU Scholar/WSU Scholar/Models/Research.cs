@@ -41,13 +41,29 @@ namespace WSU_Scholar.Models
         public virtual School School { get; set; }
     }
 
-    public class HomeFeedViewModel{
+    public class HomeFeedMostRecentViewModel{
 
         public string title { get; set; }
 
         public DateTime publishedDate { get; set; }
 
+        public string abstracts { get; set; }
+    }
+
+    public class HomeFeedMostViewedViewModel
+    {
+
+        public string title { get; set; }
+
         public int views { get; set; }
+
+        public string abstracts { get; set; }
+    }
+
+    public class HomeFeedMostDownloadedViewModel
+    {
+
+        public string title { get; set; }
 
         public int downloads { get; set; }
 

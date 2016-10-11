@@ -14,8 +14,8 @@ namespace WSU_Scholar.Controllers
         public ActionResult Index()
         {
             List<SchoolCountViewModel> schoolResult = new List<SchoolCountViewModel>();
-            List<HomeFeedViewModel> feedResult = new List<HomeFeedViewModel>();
-            HomeModelContainerViewModel feeds = new HomeModelContainerViewModel();
+            //List<HomeFeedContainerViewModel> feedResult = new List<HomeFeedContainerViewModel>();
+            HomeFeedContainerViewModel feeds = new HomeFeedContainerViewModel();
 
             //got this from here
             //http://stackoverflow.com/questions/695506/linq-left-join-group-by-and-count
@@ -37,23 +37,50 @@ namespace WSU_Scholar.Controllers
                 });
             }
 
-            //potentially very laggy for large database
-            foreach (var item in db.Research.ToList())
+            // set the number of querys to get from the database. i recon 5 in enough
+            int querysMax = 5;
+            var mostViewed = (from a in db.Research orderby a.views descending select a).Take(querysMax);
+            var mostDownloaded = (from a in db.Research orderby a.downloads descending select a).Take(querysMax);
+            var mostRecent = (from a in db.Research orderby a.publishedDate descending select a).Take(querysMax);
+
+            List<HomeFeedMostDownloadedViewModel> ListMostDownloaded = new List<HomeFeedMostDownloadedViewModel>();
+            List<HomeFeedMostRecentViewModel> ListMostRecent = new List<HomeFeedMostRecentViewModel>();
+            List<HomeFeedMostViewedViewModel> ListMostViewed = new List<HomeFeedMostViewedViewModel>();
+
+            foreach (var item in mostDownloaded)
             {
-                feedResult.Add(new HomeFeedViewModel
+                ListMostDownloaded.Add(new HomeFeedMostDownloadedViewModel
+                {
+                    title = item.title,
+                    downloads = item.downloads,
+                    abstracts = item.abstracts
+                });
+            }
+            foreach (var item in mostRecent)
+                ListMostRecent.Add(new HomeFeedMostRecentViewModel
                 {
                     title = item.title,
                     publishedDate = item.publishedDate,
+                    abstracts = item.abstracts
+                });
+            {
+
+            }
+            foreach (var item in mostViewed)
+            {
+                ListMostViewed.Add(new HomeFeedMostViewedViewModel
+                {
+                    title = item.title,
                     views = item.views,
-                    downloads = item.downloads,
                     abstracts = item.abstracts
                 });
             }
 
 
-
             feeds.schoolCount = schoolResult;
-            feeds.homeFeed = feedResult;
+            feeds.mostDownloadedFeed = ListMostDownloaded;
+            feeds.mostRecentFeed = ListMostRecent;
+            feeds.mostViewedFeed = ListMostViewed;
 
             return View(feeds);
         }
