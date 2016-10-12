@@ -86,12 +86,6 @@ namespace WSU_Scholar.Controllers
         }
     }
 
-    public class HomeFeedContainerViewModel
-    {
-        public IEnumerable<SchoolCountViewModel> schoolCount { get; set; }
-        public IEnumerable<HomeFeedMostRecentViewModel> mostRecentFeed { get; set; }
-        public IEnumerable<HomeFeedMostViewedViewModel> mostViewedFeed { get; set; }
-        public IEnumerable<HomeFeedMostDownloadedViewModel> mostDownloadedFeed { get; set; }
-    }
+
 
 }
