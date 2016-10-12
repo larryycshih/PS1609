@@ -32,7 +32,16 @@ namespace WSU_Scholar.Controllers
             {
                 return HttpNotFound();
             }
-            return View(school);
+
+            var data = from a in db.Research
+                       where a.schoolID == school.ID select a;
+
+
+            SchoolDetailViewModel result = new SchoolDetailViewModel();
+            result.school = school;
+            result.research = data;
+
+            return View(result);
         }
 
         // GET: Schools/Create

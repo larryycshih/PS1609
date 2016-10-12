@@ -31,13 +31,12 @@ namespace WSU_Scholar.Models
         public int count { get; set; }
     }
 
-    public class HomeFeedContainerViewModel
+    public class SchoolDetailViewModel
     {
-        //so something is wrong
-        public IEnumerable<SchoolCountViewModel> schoolCount { get; set; }
-        public IEnumerable<HomeFeedMostRecentViewModel> mostRecentFeed { get; set; }
-        public IEnumerable<HomeFeedMostViewedViewModel> mostViewedFeed { get; set; }
-        public IEnumerable<HomeFeedMostDownloadedViewModel> mostDownloadedFeed { get; set; }
+        
+        public School school { get; set; }
+        public IEnumerable<Research> research { get; set; }
+
     }
 
 }

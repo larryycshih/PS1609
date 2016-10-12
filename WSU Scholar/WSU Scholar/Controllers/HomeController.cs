@@ -39,41 +39,25 @@ namespace WSU_Scholar.Controllers
 
             // set the number of querys to get from the database. i recon 5 in enough
             int querysMax = 5;
+
+            //sql taking the top x records
             var mostViewed = (from a in db.Research orderby a.views descending select a).Take(querysMax);
             var mostDownloaded = (from a in db.Research orderby a.downloads descending select a).Take(querysMax);
             var mostRecent = (from a in db.Research orderby a.publishedDate descending select a).Take(querysMax);
 
+            //then add them into model
             List<HomeFeedMostDownloadedViewModel> ListMostDownloaded = new List<HomeFeedMostDownloadedViewModel>();
             List<HomeFeedMostRecentViewModel> ListMostRecent = new List<HomeFeedMostRecentViewModel>();
             List<HomeFeedMostViewedViewModel> ListMostViewed = new List<HomeFeedMostViewedViewModel>();
 
-            foreach (var item in mostDownloaded)
-            {
-                ListMostDownloaded.Add(new HomeFeedMostDownloadedViewModel
-                {
-                    title = item.title,
-                    downloads = item.downloads,
-                    abstracts = item.abstracts
-                });
+            foreach (var item in mostDownloaded){
+                ListMostDownloaded.Add(new HomeFeedMostDownloadedViewModel{title = item.title,downloads = item.downloads,abstracts = item.abstracts});
             }
-            foreach (var item in mostRecent)
-                ListMostRecent.Add(new HomeFeedMostRecentViewModel
-                {
-                    title = item.title,
-                    publishedDate = item.publishedDate,
-                    abstracts = item.abstracts
-                });
-            {
-
+            foreach (var item in mostRecent){
+                ListMostRecent.Add(new HomeFeedMostRecentViewModel{title = item.title,publishedDate = item.publishedDate,abstracts = item.abstracts});
             }
-            foreach (var item in mostViewed)
-            {
-                ListMostViewed.Add(new HomeFeedMostViewedViewModel
-                {
-                    title = item.title,
-                    views = item.views,
-                    abstracts = item.abstracts
-                });
+            foreach (var item in mostViewed){
+                ListMostViewed.Add(new HomeFeedMostViewedViewModel{title = item.title,views = item.views,abstracts = item.abstracts});
             }
 
 
@@ -100,6 +84,14 @@ namespace WSU_Scholar.Controllers
 
             return View();
         }
+    }
+
+    public class HomeFeedContainerViewModel
+    {
+        public IEnumerable<SchoolCountViewModel> schoolCount { get; set; }
+        public IEnumerable<HomeFeedMostRecentViewModel> mostRecentFeed { get; set; }
+        public IEnumerable<HomeFeedMostViewedViewModel> mostViewedFeed { get; set; }
+        public IEnumerable<HomeFeedMostDownloadedViewModel> mostDownloadedFeed { get; set; }
     }
 
 }

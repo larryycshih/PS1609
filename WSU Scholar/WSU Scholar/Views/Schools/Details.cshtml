@@ -1,4 +1,4 @@
-﻿@model WSU_Scholar.Models.School
+﻿@model WSU_Scholar.Models.SchoolDetailViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,24 +11,61 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.schoolName)
+            @Html.DisplayNameFor(model => model.school.schoolName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.schoolName)
+            @Html.DisplayFor(model => model.school.schoolName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.disciplineName)
+            @Html.DisplayNameFor(model => model.school.disciplineName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.disciplineName)
+            @Html.DisplayFor(model => model.school.disciplineName)
         </dd>
 
     </dl>
 </div>
+
+<div>
+    <h4>Recent Articles</h4>
+
+    <table class=" table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Publish Date</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model.research)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.publishedDate)
+                </td>
+                <td>
+                    <p> this is a stub</p>
+                    @*@Html.DisplayFor(modelItem => item.ResearchAuthor)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.school.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
