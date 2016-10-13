@@ -42,6 +42,7 @@ namespace WSU_Scholar.Models
     }
 
     public class HomeFeedMostRecentViewModel{
+        public int id { get; set; }
 
         public string title { get; set; }
 
@@ -52,7 +53,7 @@ namespace WSU_Scholar.Models
 
     public class HomeFeedMostViewedViewModel
     {
-
+        public int id { get; set; }
         public string title { get; set; }
 
         public int views { get; set; }
@@ -62,7 +63,7 @@ namespace WSU_Scholar.Models
 
     public class HomeFeedMostDownloadedViewModel
     {
-
+        public int id { get; set; }
         public string title { get; set; }
 
         public int downloads { get; set; }

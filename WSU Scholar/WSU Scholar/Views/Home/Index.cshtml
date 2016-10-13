@@ -5,7 +5,7 @@
 @model WSU_Scholar.Models.HomeFeedContainerViewModel
 
 
-@section scripts{
+@section headScripts{
     <script src="~/Scripts/bubble_tree/bubbletree.js"></script>
     <script src="~/Scripts/bubble_tree/jquery.history.js"></script>
     <script src="~/Scripts/bubble_tree/jquery.min.js"></script>
@@ -14,8 +14,8 @@
     <script src="~/Scripts/bubble_tree/Tween.js"></script>
     <script src="~/Scripts/bubble_tree/jquery-migrate.min.js"></script>
     <link href="~/Content/bubble_tree/bubbletree.css" rel="stylesheet" />
-    <link href="~/Content/bubble_tree/page.css" rel="stylesheet" />
-    <link href="~/Content/bubble_tree/tooltip.css" rel="stylesheet" />
+    @*<link href="~/Content/bubble_tree/page.css" rel="stylesheet" />*@
+    @*<link href="~/Content/bubble_tree/tooltip.css" rel="stylesheet" />*@
 
 
 
@@ -44,18 +44,19 @@
 
     </script>
 }
+@* the reason this part is in a section block is that it need to span across to the edge of the page *@
+@section bubbleTree{
+    <div class="container-fluid">
 
-
-<div class="jumbotron" >
-    <div class="container">
-        <div class="bubbletree-wrapper">
+        <div class="bubbletree-wrapper" id="bt-wrapper" >
             <div class="bubbletree"></div>
         </div>
     </div>
+}
 
-</div>
 
-<div class="row">
+
+<div class="row ">
     <div class="col-md-6">
         <h2>Dynamic Tabs</h2>
         <ul class="nav nav-tabs">
@@ -69,7 +70,7 @@
             <div id="mostRecent" class="tab-pane fade in active">
                 @foreach (var item in Model.mostRecentFeed)
                 {
-                    <h3>@item.title</h3>
+                    <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
                     <p>@item.publishedDate</p>
                     <p>@item.abstracts</p>
                     <br />
@@ -80,7 +81,7 @@
             <div id="mostView" class="tab-pane fade">
                 @foreach (var item in Model.mostViewedFeed)
                 {
-                    <h3>@item.title</h3>
+                    <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
                     <p>Visits: @item.views</p>
                     <p>@item.abstracts</p>
                     <br />
@@ -89,7 +90,7 @@
             <div id="mostDownloaded" class="tab-pane fade">
                 @foreach (var item in Model.mostDownloadedFeed)
                 {
-                    <h3>@item.title</h3>
+                    <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
                     <p>Downloads: @item.downloads</p>
                     <p>@item.abstracts</p>
                     <br />
@@ -109,3 +110,6 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+@section scripts{
+
+}

@@ -51,13 +51,13 @@ namespace WSU_Scholar.Controllers
             List<HomeFeedMostViewedViewModel> ListMostViewed = new List<HomeFeedMostViewedViewModel>();
 
             foreach (var item in mostDownloaded){
-                ListMostDownloaded.Add(new HomeFeedMostDownloadedViewModel{title = item.title,downloads = item.downloads,abstracts = item.abstracts});
+                ListMostDownloaded.Add(new HomeFeedMostDownloadedViewModel{id = item.ID,title = item.title,downloads = item.downloads,abstracts = item.abstracts});
             }
             foreach (var item in mostRecent){
-                ListMostRecent.Add(new HomeFeedMostRecentViewModel{title = item.title,publishedDate = item.publishedDate,abstracts = item.abstracts});
+                ListMostRecent.Add(new HomeFeedMostRecentViewModel { id = item.ID, title = item.title, publishedDate = item.publishedDate, abstracts = item.abstracts });
             }
             foreach (var item in mostViewed){
-                ListMostViewed.Add(new HomeFeedMostViewedViewModel{title = item.title,views = item.views,abstracts = item.abstracts});
+                ListMostViewed.Add(new HomeFeedMostViewedViewModel { id = item.ID, title = item.title, views = item.views, abstracts = item.abstracts });
             }
 
 
