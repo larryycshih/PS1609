@@ -26,6 +26,8 @@ namespace WSU_Scholar.Controllers
             ViewBag.ViewsSortParm = sortOrder == "Views" ? "views_desc" : "Views";
             ViewBag.DownloadsSortParm = sortOrder == "Downloads" ? "downloads_desc" : "Downloads";
 
+            
+
             if (searchString != null)
             {
                 page = 1;
