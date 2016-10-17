@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("headScripts", required: false)
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,6 +25,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Researches", "Index", "Researches")</li>
+                    <li>@Html.TextBox("Research", "Search")</li>
+                    <li><input type="button" value="Search" onclick="location.href='@Url.Action("Researches")'"/></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
