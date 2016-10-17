@@ -15,6 +15,7 @@ namespace WSU_Scholar.Models
         public string title { get; set; }
 
         [Required]
+        [Display(Name="School")]
         public int schoolID { get; set; }
 
         [DataType(DataType.Date)]
@@ -69,5 +70,14 @@ namespace WSU_Scholar.Models
         public int downloads { get; set; }
 
         public string abstracts { get; set; }
+    }
+
+    public class ResearchCreateViewModel
+    {
+        public int id { get; set; }
+
+        public Research research { get; set; }
+
+        public IEnumerable<Author> author { get; set; }
     }
 }

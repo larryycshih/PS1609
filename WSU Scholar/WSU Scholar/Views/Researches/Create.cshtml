@@ -4,10 +4,10 @@
     ViewBag.Title = "Create";
 }
 
-@section Scripts{
-    @* 
-    this code is sourced from here
-    https://forums.asp.net/t/2026059.aspx?How+to+add+Rich+Text+Controls+to+textbox+in+asp+net+MVC
+@section headScripts{
+    @*
+        this code is sourced from here
+        https://forums.asp.net/t/2026059.aspx?How+to+add+Rich+Text+Controls+to+textbox+in+asp+net+MVC
     *@
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
@@ -30,11 +30,21 @@
             content_css: "~/Content/Site.css",
         });
     </script>
+    @*
+        This site i mound that have modules to enable a bueatiful multiple select box with search function.
+        i could hook this up with ajax to allow users to assign multiple authors in a published research article
+        https://select2.github.io/
+    *@
 
+    <link href="~/Content/select2/select2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/select2/select2.min.js"></script>
 
-    Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(".js-example-basic-multiple").select2();
+    </script>
+    
 }
-
+    @Scripts.Render("~/bundles/jqueryval")
 <h2>Create</h2>
 
 
@@ -67,6 +77,15 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.publishedDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.publishedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2">Authors</label>
+
+            <div class="col-md-10">
+               @Html.DropDownList("items", new MultiSelectList(ViewBag.authorID,), new { multiple = "multiple" })
             </div>
         </div>
 
@@ -116,9 +135,12 @@
             </div>
         </div>
     </div>
+
+
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
 

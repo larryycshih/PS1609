@@ -35,23 +35,27 @@
                 ]
             };
 
-
-            new BubbleTree({
+            
+            var bubbleTree = new BubbleTree({
                 data: data,
-                container: '.bubbletree',
+                container: '.bubbletree'
             });
+            bubbleTree.config.bubbleType="donut";
+
+
         });
 
     </script>
 }
 @* the reason this part is in a section block is that it need to span across to the edge of the page *@
 @section bubbleTree{
-    <div class="container-fluid">
 
-        <div class="bubbletree-wrapper" id="bt-wrapper" >
-            <div class="bubbletree"></div>
-        </div>
-    </div>
+    <div class="container-fluid bubbletree-wrapper">
+
+    <div class="bubbletree"></div>
+
+</div>
+
 }
 
 
@@ -110,6 +114,8 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
 @section scripts{
+
 
 }

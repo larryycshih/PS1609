@@ -113,6 +113,9 @@ namespace WSU_Scholar.Controllers
         {
             ViewBag.ID = new SelectList(db.Record, "researchID", "fileID");
             ViewBag.schoolID = new SelectList(db.School, "ID", "schoolName");
+            ViewBag.authorID = new SelectList(db.Author, "ID", "Fullname");
+
+
             return View();
         }
 
