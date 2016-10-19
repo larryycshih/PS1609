@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using WSU_Scholar.Models;
+using System.IO;
 
 namespace WSU_Scholar.Controllers
 {
@@ -26,7 +27,7 @@ namespace WSU_Scholar.Controllers
             ViewBag.ViewsSortParm = sortOrder == "Views" ? "views_desc" : "Views";
             ViewBag.DownloadsSortParm = sortOrder == "Downloads" ? "downloads_desc" : "Downloads";
 
-            
+
 
             if (searchString != null)
             {
@@ -38,7 +39,7 @@ namespace WSU_Scholar.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            
+
             var Research = from r in db.Research
                            select r;
 
@@ -115,7 +116,20 @@ namespace WSU_Scholar.Controllers
         {
             ViewBag.ID = new SelectList(db.Record, "researchID", "fileID");
             ViewBag.schoolID = new SelectList(db.School, "ID", "schoolName");
-            ViewBag.authorID = new SelectList(db.Author, "ID", "Fullname");
+            var authors = db.Author.Select(i => new { i.ID, name = i.fname + " " + i.lname }).ToList();
+
+            List<AuthorList> a = new List<AuthorList>();
+
+            foreach (var item in authors)
+            {
+                a.Add(new AuthorList { ID = item.ID, fullName = item.name });
+
+            }
+
+
+
+            //ViewBag.authors = new MultiSelectList(authors, "ID", "name");
+            ViewBag.authors = a;
 
 
             return View();
@@ -126,12 +140,30 @@ namespace WSU_Scholar.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,schoolID,publishedDate,subject,grants,views,downloads,abstracts")] Research research)
+        public ActionResult Create([Bind(Include = "ID,title,schoolID,publishedDate,subject,grants,views,downloads,abstracts")] Research research, HttpPostedFileBase file)
         {
+
             if (ModelState.IsValid)
             {
                 db.Research.Add(research);
                 db.SaveChanges();
+                //the following code save file to project folder
+                if (file != null && file.ContentLength > 0)
+                {
+                    var filename = file.FileName.GetHashCode();
+                    var saveDir = Server.MapPath("~/files/");
+                    var path = Path.Combine(saveDir, filename.ToString());
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(saveDir);
+                    }
+                    file.SaveAs(path);
+                    //the following code maps the file to project
+                    Record r = new Record { researchID = research.ID, fileID = filename.ToString() };
+                    db.Record.Add(r);
+                    db.SaveChanges();
+                    
+                }
                 return RedirectToAction("Index");
             }
 

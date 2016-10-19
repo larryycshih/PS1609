@@ -51,11 +51,20 @@ namespace WSU_Scholar.Models
         [RegularExpression(@"([0-9]+)", ErrorMessage = "Must be a Number.")]
         public int mobile { get; set; }
 
+        [Display(Name="University")]
         public string university { get; set; }
 
+        [Display(Name="Campus")]
         public string campus { get; set; }
             
         public virtual School School { get; set; }
 
     }
+
+    public class AuthorList
+    {
+        public int ID { get; set; }
+        public String fullName { get; set; }
+    }
+
 }

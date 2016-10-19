@@ -74,10 +74,8 @@ namespace WSU_Scholar.Models
 
     public class ResearchCreateViewModel
     {
-        public int id { get; set; }
-
         public Research research { get; set; }
 
-        public IEnumerable<Author> author { get; set; }
+        public IEnumerable<AuthorList> authors { get; set; }
     }
 }

@@ -35,22 +35,19 @@
         i could hook this up with ajax to allow users to assign multiple authors in a published research article
         https://select2.github.io/
     *@
+<link href="~/Content/select2/select2.css" rel="stylesheet" />
+<script src="~/Scripts/select2/select2.js"></script>
 
-    <link href="~/Content/select2/select2.min.css" rel="stylesheet" />
-    <script src="~/Scripts/select2/select2.min.js"></script>
-
-    <script type="text/javascript">
-        $(".js-example-basic-multiple").select2();
-    </script>
-    
 }
+@Scripts.Render("~bundles/select2" )
     @Scripts.Render("~/bundles/jqueryval")
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Researches", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+   
 
     <div class="form-horizontal">
         <h4>Research</h4>
@@ -85,7 +82,9 @@
             <label class="control-label col-md-2">Authors</label>
 
             <div class="col-md-10">
-               @Html.DropDownList("items", new MultiSelectList(ViewBag.authorID,), new { multiple = "multiple" })
+               @Html.DropDownList("items", new MultiSelectList(ViewBag.authors, "ID", "fullName"), new
+          {@*multiple= "multiple"*@ })
+
             </div>
         </div>
 
@@ -122,12 +121,22 @@
         </div>
 
         <div class="form-group">
+            `<label class="control-label col-md-2" for="file">Upload</label>
+            <div class="col-md-10">
+                <input type="file" name="file" id="file" />
+                
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.abstracts, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.abstracts, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.abstracts, "", new { @class = "text-danger" })
             </div>
         </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
