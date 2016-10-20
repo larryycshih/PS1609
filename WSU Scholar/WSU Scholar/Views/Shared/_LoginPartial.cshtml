@@ -7,22 +7,25 @@
 
     <ul class="nav navbar-nav navbar-right">
         
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        
         <li> @Html.TextBox("SearchString", "", new { placeholder = "Search" })
         <input type="button" value="Search" /> </li>
         @*<input type="button" value="Search" onclick="location.href='@Url.Action("Index", "Researches")'" />*@
+
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        
         <li>
         @Html.TextBox("SearchString", "", new { placeholder = "Search" })
-        <input type="button" value="Search"  /></li>
+        <input type="button" value="Search" /></li>
         @*<input type="button" value="Search" onclick="location.href='@Url.Action("Index", "Researches")'" />
             *@
+
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

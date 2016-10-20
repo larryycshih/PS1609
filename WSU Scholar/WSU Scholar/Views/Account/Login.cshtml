@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-middle-1">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -42,9 +42,9 @@
                     </div>
                 </div>
                 @**<p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                    *@
+                        @Html.ActionLink("Register as a new user", "Register")
+                    </p>
+                *@
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
