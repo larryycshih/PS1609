@@ -87,11 +87,19 @@ namespace WSU_Scholar.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Author author = db.Author.Find(id);
+
+            var researches = from a in db.ResearchAuthor
+                             join b in db.Research on a.researchID equals b.ID 
+                             where a.authorID == author.ID
+                                 select a;
+
             if (author == null)
             {
                 return HttpNotFound();
             }
-
+            AuthorDetailViewModel result = new AuthorDetailViewModel();
+            result.author = author;
+            //result.research = researches.ToList<Research>();
             return View(author);
         }
 

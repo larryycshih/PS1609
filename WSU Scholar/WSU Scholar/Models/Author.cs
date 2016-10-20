@@ -67,4 +67,11 @@ namespace WSU_Scholar.Models
         public String fullName { get; set; }
     }
 
+    public class AuthorDetailViewModel
+    {
+        public Author author { get; set; }
+        public IEnumerable<Research> research { get; set; }
+
+    }
+
 }
