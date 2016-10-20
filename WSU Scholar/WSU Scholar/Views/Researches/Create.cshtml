@@ -82,8 +82,7 @@
             <label class="control-label col-md-2">Authors</label>
 
             <div class="col-md-10">
-               @Html.DropDownList("items", new MultiSelectList(ViewBag.authors, "ID", "fullName"), new
-          {@*multiple= "multiple"*@ })
+               @Html.DropDownList("authors", new MultiSelectList(ViewBag.authors, "ID", "fullName"), new {@*multiple= "multiple"*@ })
 
             </div>
         </div>

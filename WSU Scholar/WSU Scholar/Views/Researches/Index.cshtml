@@ -27,9 +27,9 @@
 
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             File ID
-        </th>
+        </th>*@
         <th>
             School
         </th>
@@ -68,14 +68,14 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Record.fileID)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.School.schoolName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.title)
+            @Html.ActionLink(item.title, "Details", null, new { id = item.ID },null)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.publishedDate)

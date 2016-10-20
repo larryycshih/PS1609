@@ -91,6 +91,7 @@ namespace WSU_Scholar.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(author);
         }
 
