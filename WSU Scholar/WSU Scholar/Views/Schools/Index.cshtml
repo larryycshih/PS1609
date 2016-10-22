@@ -31,9 +31,17 @@
             @Html.DisplayFor(modelItem => item.disciplineName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) 
+            }
+            
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
+
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            }
         </td>
     </tr>
 }
