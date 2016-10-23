@@ -10,20 +10,21 @@
     <h4>Research</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Record.fileID)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Record.fileID)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.School.schoolName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.School.schoolName)
+            @*@Html.DisplayFor(model => model.School.schoolName)*@
+            @Html.ActionLink(Model.School.schoolName, "Details", "Schools", new { id = Model.schoolID }, null)
         </dd>
 
         <dt>

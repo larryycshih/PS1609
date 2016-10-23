@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WSU_Scholar.Models
 {
@@ -34,6 +35,7 @@ namespace WSU_Scholar.Models
         [Display(Name = "Downloads")]
         public int downloads { get; set; }
 
+        [AllowHtml]
         [Display(Name = "Abstract")]
         public string abstracts { get; set; }
 
