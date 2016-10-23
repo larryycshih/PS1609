@@ -20,8 +20,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="PXLogos.png" style="height:50px;">
-                @Html.ActionLink("WSU Scholar", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+                <a href="@Url.Action("Index","Home",null)" class="navbar-brand">
+                    <img src="~/PXLogos.png" style=" height:50px;" title="WSU Scholar" alt="WSU Scholar" /> 
+                </a>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,9 +32,14 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Researches", "Index", "Researches")</li>
                     <li>@Html.ActionLink("Schools", "Index", "Schools")</li>
-                   @* <li>@using (Html.BeginForm("Index", "Researches", FormMethod.Get))
-
-    </li>*@
+                    @*<li>
+                        @using (Html.BeginForm("Index", "Researches",FormMethod.Get))
+                        {
+                            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+                            <input type="submit" value="Search" />
+                    
+                        }
+                    </li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

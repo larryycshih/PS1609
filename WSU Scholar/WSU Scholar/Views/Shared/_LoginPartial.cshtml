@@ -6,25 +6,27 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        
-        <li> @Html.TextBox("SearchString", "", new { placeholder = "Search" })
-        <input type="button" value="Search" /> </li>
-        @*<input type="button" value="Search" onclick="location.href='@Url.Action("Index", "Researches")'" />*@
 
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
-
+        <li>
+        @using (Html.BeginForm("Index", "Researches", FormMethod.Get))
+        {
+            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+            <input type="submit" value="Search" />
+        }</li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        
         <li>
-        @Html.TextBox("SearchString", "", new { placeholder = "Search" })
-        <input type="button" value="Search" /></li>
-        @*<input type="button" value="Search" onclick="location.href='@Url.Action("Index", "Researches")'" />
-            *@
+        @using (Html.BeginForm("Index", "Researches", FormMethod.Get))
+        {
+            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+            <input type="submit" value="Search" />
+
+        }</li>
 
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
