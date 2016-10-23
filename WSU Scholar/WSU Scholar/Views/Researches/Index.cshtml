@@ -72,7 +72,7 @@
             @Html.DisplayFor(modelItem => item.Record.fileID)
         </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.School.schoolName)
+            @Html.ActionLink(item.School.schoolName, "Details", "Schools", new { id = item.schoolID },null)
         </td>
         <td>
             @Html.ActionLink(item.title, "Details", null, new { id = item.ID },null)
