@@ -35,7 +35,7 @@
                 ]
             };
 
-            
+
             var bubbleTree = new BubbleTree({
                 data: data,
                 container: '.bubbletree'
@@ -52,63 +52,87 @@
 
     <div class="container-fluid bubbletree-wrapper">
 
-    <div class="bubbletree"></div>
+        <div class="bubbletree"></div>
         <div class="container body-content">
-            <div class="row"><div class="col-md-6">
-                
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#mostRecent">Most Recent</a></li>
-        <li><a data-toggle="tab" href="#mostView">Most Viewed</a></li>
-        <li><a data-toggle="tab" href="#mostDownloaded">Most Cited</a></li>
-        @*<li><a data-toggle="tab" href="#menu3">Menu 3</a></li>*@
-    </ul>
+            <div class="row">
+                <div class="col-md-6">
 
-    <div class="tab-content">
-        <div id="mostRecent" class="tab-pane fade in active">
-            @foreach (var item in Model.mostRecentFeed)
-            {
-                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
-                <p>@item.publishedDate</p>
-                <p>@item.abstracts</p>
-                <br />
-            }
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#mostRecent">Most Recent</a></li>
+                        <li><a data-toggle="tab" href="#mostView">Most Viewed</a></li>
+                        <li><a data-toggle="tab" href="#mostDownloaded">Most Cited</a></li>
+                        @*<li><a data-toggle="tab" href="#menu3">Menu 3</a></li>*@
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="mostRecent" class="tab-pane fade in active">
+                            @foreach (var item in Model.mostRecentFeed)
+                            {
+                                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
+                                <p>@item.publishedDate</p>
+                                var trimedAbstract = item.abstracts;
+                                if (trimedAbstract != null)
+                                {
+                                    trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+                                    <p><text>@trimedAbstract</text></p>
+                                }
+                                else { Html.DisplayFor(modelItem => item.abstracts); }
+                                
+                                <br />
+                            }
+
+                        </div>
+                        <div id="mostView" class="tab-pane fade">
+                            @foreach (var item in Model.mostViewedFeed)
+                            {
+                                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
+                                <p>Visits: @item.views</p>
+                     
+                                var trimedAbstract = item.abstracts;
+                                if (trimedAbstract != null)
+                                {
+                                    trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+                                    <p><text>@trimedAbstract</text></p>
+                                }
+                                else { Html.DisplayFor(modelItem => item.abstracts); }
+                                
+                                <br />
+                            }
+                        </div>
+                        <div id="mostDownloaded" class="tab-pane fade">
+                            @foreach (var item in Model.mostDownloadedFeed)
+                            {
+                                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
+                                <p>Downloads: @item.downloads</p>
+                       
+                                var trimedAbstract = item.abstracts;
+                                if (trimedAbstract != null)
+                                {
+                                    trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+                                    <p><text>@trimedAbstract</text></p>
+                                }
+                                else { Html.DisplayFor(modelItem => item.abstracts); }
+                                
+                                <br />
+                            }
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <h3>Menu 3</h3>
+                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <h3>HOME</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
 
         </div>
-        <div id="mostView" class="tab-pane fade">
-            @foreach (var item in Model.mostViewedFeed)
-            {
-                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
-                <p>Visits: @item.views</p>
-                <p>@item.abstracts</p>
-                <br />
-            }
-        </div>
-        <div id="mostDownloaded" class="tab-pane fade">
-            @foreach (var item in Model.mostDownloadedFeed)
-            {
-                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
-                <p>Downloads: @item.downloads</p>
-                <p>@item.abstracts</p>
-                <br />
-            }
-        </div>
-        <div id="menu3" class="tab-pane fade">
-            <h3>Menu 3</h3>
-            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        </div>
+
     </div>
-
-</div>
-
-<div class="col-md-6">
-    <h3>HOME</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-</div></div>
-
-        </div>
-
-</div>
-    
 }
 
 
