@@ -35,9 +35,11 @@ namespace WSU_Scholar.Models
         [Display(Name = "Downloads")]
         public int downloads { get; set; }
 
-        [AllowHtml]
+        //[AllowHtml]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Abstract")]
         public string abstracts { get; set; }
+
 
         public virtual Record Record { get; set; }
         public virtual ICollection<ResearchAuthor> ResearchAuthor { get; set; }

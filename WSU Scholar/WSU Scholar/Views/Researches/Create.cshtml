@@ -9,7 +9,7 @@
         this code is sourced from here
         https://forums.asp.net/t/2026059.aspx?How+to+add+Rich+Text+Controls+to+textbox+in+asp+net+MVC
     *@
-    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    @*<script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         // Initialize your tinyMCE Editor with your preferred options
         tinyMCE.init({
@@ -29,7 +29,7 @@
             // Example content CSS (should be your site CSS)
             content_css: "~/Content/Site.css",
         });
-    </script>
+    </script>*@
     @*
         This site i mound that have modules to enable a bueatiful multiple select box with search function.
         i could hook this up with ajax to allow users to assign multiple authors in a published research article
@@ -130,6 +130,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.abstracts, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @*@Html.TextAreaFor(model => model.abstracts, new { htmlAttributes = new { @class = "form-control"   } })*@
                 @Html.TextAreaFor(model => model.abstracts, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.abstracts, "", new { @class = "text-danger" })
             </div>

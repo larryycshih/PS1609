@@ -93,7 +93,18 @@
             @Html.DisplayFor(modelItem => item.downloads)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.abstracts)
+            @{
+    var trimedAbstract = item.abstracts;
+    if (trimedAbstract != null)
+    {
+        trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+        //Html.DisplayFor(modelItem => trimedAbstract);
+        <text>@trimedAbstract</text>
+    }
+    else { Html.DisplayFor(modelItem => item.abstracts); }
+
+}
+
         </td>
         <td>
             @if (Request.IsAuthenticated)
