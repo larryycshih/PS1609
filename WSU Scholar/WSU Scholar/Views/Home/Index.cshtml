@@ -103,7 +103,7 @@
                             @foreach (var item in Model.mostDownloadedFeed)
                             {
                                 <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
-                                <p>Downloads: @item.downloads</p>
+                                <p>Cited: @item.downloads</p>
                        
                                 var trimedAbstract = item.abstracts;
                                 if (trimedAbstract != null)
