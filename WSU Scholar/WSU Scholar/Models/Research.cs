@@ -40,9 +40,7 @@ namespace WSU_Scholar.Models
         [Display(Name = "Abstract")]
         public string abstracts { get; set; }
 
-
         public virtual Record Record { get; set; }
-        public virtual ICollection<ResearchAuthor> ResearchAuthor { get; set; }
         public virtual School School { get; set; }
     }
 

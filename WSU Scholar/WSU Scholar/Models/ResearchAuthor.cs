@@ -9,16 +9,14 @@ namespace WSU_Scholar.Models
 {
     public class ResearchAuthor
     {
-
-        [Key]
-        [ForeignKey("Research")]
+        public int ID { get; set; }
+        
         public int researchID { get; set; }
-
-        [ForeignKey("Author")]
+        
         public int authorID { get; set; }
 
-        public virtual ICollection<Author> Author { get; set; }
-        public virtual ICollection<Research> Research { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual Research Research { get; set; }
 
     }
 }
