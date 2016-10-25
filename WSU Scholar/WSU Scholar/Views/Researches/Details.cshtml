@@ -1,4 +1,4 @@
-﻿@model WSU_Scholar.Models.Research
+﻿@model WSU_Scholar.Models.ResearchDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -19,68 +19,80 @@
         </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.School.schoolName)
+            @Html.DisplayNameFor(model => model.research.School.schoolName)
         </dt>
 
         <dd>
             @*@Html.DisplayFor(model => model.School.schoolName)*@
-            @Html.ActionLink(Model.School.schoolName, "Details", "Schools", new { id = Model.schoolID }, null)
+            @Html.ActionLink(Model.research.School.schoolName, "Details", "Schools", new { id = Model.research.schoolID }, null)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayNameFor(model => model.research.title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.title)
+            @Html.DisplayFor(model => model.research.title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.publishedDate)
+            @Html.DisplayNameFor(model => model.research.publishedDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.publishedDate)
+            @Html.DisplayFor(model => model.research.publishedDate)
+        </dd>
+        @{
+            
+              
+        }
+
+        <dt>
+            Author
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(m => m.author.FullName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.subject)
+            @Html.DisplayNameFor(model => model.research.subject)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.subject)
+            @Html.DisplayFor(model => model.research.subject)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.grants)
+            @Html.DisplayNameFor(model => model.research.grants)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.grants)
+            @Html.DisplayFor(model => model.research.grants)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.views)
+            @Html.DisplayNameFor(model => model.research.views)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.views)
+            @Html.DisplayFor(model => model.research.views)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.downloads)
+            @Html.DisplayNameFor(model => model.research.downloads)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.downloads)
+            @Html.DisplayFor(model => model.research.downloads)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.abstracts)
+            @Html.DisplayNameFor(model => model.research.abstracts)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.abstracts)
+            @Html.DisplayFor(model => model.research.abstracts)
         </dd>
 
     </dl>
@@ -88,7 +100,7 @@
 <p>
     @if (Request.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })<text> |</text>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.research.ID })<text> |</text>
     }
 
     @Html.ActionLink("Back to List", "Index")

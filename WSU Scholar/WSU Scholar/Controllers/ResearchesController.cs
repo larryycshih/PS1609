@@ -104,11 +104,15 @@ namespace WSU_Scholar.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Research research = db.Research.Find(id);
+            Author author = (from a in db.ResearchAuthor where a.researchID == research.ID select a.Author).FirstOrDefault();
+                
             if (research == null)
             {
                 return HttpNotFound();
             }
-            return View(research);
+            ResearchDetailsViewModel model = new ResearchDetailsViewModel { research = research, author = author };   
+            //ViewBag.Author = author;
+            return View(model);
         }
 
         // GET: Researches/Create
@@ -117,18 +121,12 @@ namespace WSU_Scholar.Controllers
             ViewBag.ID = new SelectList(db.Record, "researchID", "fileID");
             ViewBag.schoolID = new SelectList(db.School, "ID", "schoolName");
             var authors = db.Author.Select(i => new { i.ID, name = i.fname + " " + i.lname }).ToList();
-
             List<AuthorList> a = new List<AuthorList>();
-
             foreach (var item in authors)
             {
                 a.Add(new AuthorList { ID = item.ID, fullName = item.name });
 
             }
-
-
-
-            //ViewBag.authors = new MultiSelectList(authors, "ID", "name");
             ViewBag.authors = a;
 
 
@@ -172,7 +170,7 @@ namespace WSU_Scholar.Controllers
                 var author = db.Author.First(a => a.ID == formAuthorID);
 
                 ResearchAuthor researchAuthor = new ResearchAuthor();
-                researchAuthor.ID = db.ResearchAuthor.Count() + 1;
+                //researchAuthor.ID = db.ResearchAuthor.Count() + 1;
                 researchAuthor.researchID = research.ID;
                 researchAuthor.authorID = author.ID; 
 
@@ -201,6 +199,15 @@ namespace WSU_Scholar.Controllers
             {
                 return HttpNotFound();
             }
+
+            var authors = db.Author.Select(i => new { i.ID, name = i.fname + " " + i.lname }).ToList();
+            List<AuthorList> a = new List<AuthorList>();
+            foreach (var item in authors)
+            {
+                a.Add(new AuthorList { ID = item.ID, fullName = item.name });
+            }
+
+            ViewBag.authors = a;
             ViewBag.ID = new SelectList(db.Record, "researchID", "fileID", research.ID);
             ViewBag.schoolID = new SelectList(db.School, "ID", "schoolName", research.schoolID);
             return View(research);
@@ -221,6 +228,20 @@ namespace WSU_Scholar.Controllers
             }
             ViewBag.ID = new SelectList(db.Record, "researchID", "fileID", research.ID);
             ViewBag.schoolID = new SelectList(db.School, "ID", "schoolName", research.schoolID);
+
+            //this section register the reearch to a author
+            //maybe later add in multiple author support
+            var formAuthorID = Convert.ToInt32(Request["authors"]);
+            var author = db.Author.First(a => a.ID == formAuthorID);
+
+            ResearchAuthor researchAuthor = new ResearchAuthor();
+            //researchAuthor.ID = db.ResearchAuthor.Count() + 1;
+            researchAuthor.researchID = research.ID;
+            researchAuthor.authorID = author.ID;
+
+            db.ResearchAuthor.Add(researchAuthor);
+            db.SaveChanges();
+
             return View(research);
         }
 

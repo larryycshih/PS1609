@@ -62,12 +62,12 @@
                     <td>
                         @if (Request.IsAuthenticated)
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID })<text> |</text>
+                            @Html.ActionLink("Edit", "Edit","Researches", new { id = item.ID },null)<text> |</text>
                         }
 
                         @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@@if (Request.IsAuthenticated)
                         {
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })<text> |</text>
+                            @Html.ActionLink("Delete", "Delete","Researches", new { id = item.ID },null)<text> |</text>
                         }
 
                     </td>

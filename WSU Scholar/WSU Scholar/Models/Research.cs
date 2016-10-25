@@ -89,4 +89,10 @@ namespace WSU_Scholar.Models
 
         public IEnumerable<AuthorList> authors { get; set; }
     }
+
+    public class ResearchDetailsViewModel
+    {
+        public Research research { get; set; }
+        public Author author { get; set; }
+    }
 }
