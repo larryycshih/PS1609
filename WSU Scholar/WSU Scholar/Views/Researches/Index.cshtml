@@ -96,9 +96,10 @@
             <td>
                 @{
         var trimedAbstract = item.abstracts;
-        if (trimedAbstract != null)
+        var abstractMaxLength = 150;
+        if (trimedAbstract != null && item.abstracts.Length > abstractMaxLength)
         {
-            trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+            trimedAbstract = trimedAbstract.Substring(0, abstractMaxLength) + "...";
             //Html.DisplayFor(modelItem => trimedAbstract);
             <text>@trimedAbstract</text>
         }
