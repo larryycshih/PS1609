@@ -3,30 +3,41 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
-        <li>
-        @using (Html.BeginForm("Index", "Researches", FormMethod.Get))
-        {
-            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
-            <input type="submit" value="Search" />
-        }</li>
-    </ul>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+            <li>
+
+                <form action="/Researches" class="search-bar" method="get" style="padding-top: 15px;padding-bottom: 15px;">
+                    @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+                    <input type="submit" value="Search" />
+                </form>
+                @*@using (Html.BeginForm("Index", "Researches", FormMethod.Get, new { @class = "search-bar" }))
+                    {
+                        @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+                        <input type="submit" value="Search" />
+                    }*@
+            </li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-        @using (Html.BeginForm("Index", "Researches", FormMethod.Get))
-        {
-            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
-            <input type="submit" value="Search" />
+            @*@using (Html.BeginForm("Index", "Researches", FormMethod.Get, new { @class = "search-bar" }))
+                {
+                    @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+                    <input type="submit" value="Search" />
 
-        }</li>
+                }*@
+            <form action="/Researches" class="search-bar" method="get" style="padding-top: 15px;padding-bottom: 15px;">
+                @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+                <input type="submit" value="Search" />
+            </form>
+        </li>
 
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
