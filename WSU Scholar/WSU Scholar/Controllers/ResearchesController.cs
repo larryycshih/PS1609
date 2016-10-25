@@ -168,10 +168,14 @@ namespace WSU_Scholar.Controllers
 
                 //this section register the reearch to a author
                 //maybe later add in multiple author support
-                var authors = Convert.ToInt32(Request["authors"]);
+                var formAuthorID = Convert.ToInt32(Request["authors"]);
+                var author = db.Author.First(a => a.ID == formAuthorID);
+
                 ResearchAuthor researchAuthor = new ResearchAuthor();
+                researchAuthor.ID = db.ResearchAuthor.Count() + 1;
                 researchAuthor.researchID = research.ID;
-                researchAuthor.authorID = authors;
+                researchAuthor.authorID = author.ID; 
+
                 db.ResearchAuthor.Add(researchAuthor);
                 db.SaveChanges();
 

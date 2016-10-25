@@ -9,6 +9,8 @@ namespace WSU_Scholar.Models
 {
     public class ResearchAuthor
     {
+       [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         
         public int researchID { get; set; }

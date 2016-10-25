@@ -33,11 +33,25 @@ namespace WSU_Scholar.Models
 
     public class SchoolDetailViewModel
     {
-        
+
         public School school { get; set; }
-        public IEnumerable<Research> research { get; set; }
+
+        public IEnumerable<SchoolDetailContainer> details { get; set; }
 
     }
+
+    public class SchoolDetailContainer
+    {
+        public int ID { get; set; }
+        [Display(Name = "Title")]
+        public String title { get; set; }
+        [Display(Name = "Published Date")]
+        public DateTime publishedDate { get; set; }
+        [Display(Name = "Author")]
+        public String authorName { get; set; }
+    }
+
+
 
     public class HomeFeedContainerViewModel
     {

@@ -32,7 +32,7 @@ namespace WSU_Scholar.Models
         public string FullName
         {
             get
-            { return fname + lname; }
+            { return fname + " "+ lname; }
         }
 
 

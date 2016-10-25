@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ResearchAuthorsController.cs" />
     <Compile Include="Controllers\ResearchesController.cs" />
     <Compile Include="Controllers\SchoolsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,6 +185,10 @@
     <Compile Include="Migrations\201610251127398_InitialCreate1.cs" />
     <Compile Include="Migrations\201610251127398_InitialCreate1.Designer.cs">
       <DependentUpon>201610251127398_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610251204267_ResearchAuthorChanges.cs" />
+    <Compile Include="Migrations\201610251204267_ResearchAuthorChanges.Designer.cs">
+      <DependentUpon>201610251204267_ResearchAuthorChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -223,6 +228,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <EmbeddedResource Include="Migrations\201610251127398_InitialCreate1.resx">
       <DependentUpon>201610251127398_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610251204267_ResearchAuthorChanges.resx">
+      <DependentUpon>201610251204267_ResearchAuthorChanges.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\PublishProfiles\web-deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -527,6 +535,11 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\ResearchAuthors\Create.cshtml" />
+    <Content Include="Views\ResearchAuthors\Delete.cshtml" />
+    <Content Include="Views\ResearchAuthors\Details.cshtml" />
+    <Content Include="Views\ResearchAuthors\Edit.cshtml" />
+    <Content Include="Views\ResearchAuthors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
