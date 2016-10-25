@@ -23,13 +23,13 @@
             <input type="submit" value="Search" />
         </p>
     }
+ 
 </div>
-
 <table class="table">
     <tr>
         @*<th>
-            File ID
-        </th>*@
+                File ID
+            </th>*@
         <th>
             School
         </th>
@@ -66,65 +66,67 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Record.fileID)
-        </td>*@
-        <td>
-            @Html.ActionLink(item.School.schoolName, "Details", "Schools", new { id = item.schoolID },null)
-        </td>
-        <td>
-            @Html.ActionLink(item.title, "Details", null, new { id = item.ID },null)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.publishedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.grants)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.views)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.downloads)
-        </td>
-        <td>
-            @{
-    var trimedAbstract = item.abstracts;
-    if (trimedAbstract != null)
+    @foreach (var item in Model)
     {
-        trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
-        //Html.DisplayFor(modelItem => trimedAbstract);
-        <text>@trimedAbstract</text>
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Record.fileID)
+                </td>*@
+            <td>
+                @Html.ActionLink(item.School.schoolName, "Details", "Schools", new { id = item.schoolID }, null)
+            </td>
+            <td>
+                @Html.ActionLink(item.title, "Details", null, new { id = item.ID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publishedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grants)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.views)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.downloads)
+            </td>
+            <td>
+                @{
+        var trimedAbstract = item.abstracts;
+        if (trimedAbstract != null)
+        {
+            trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+            //Html.DisplayFor(modelItem => trimedAbstract);
+            <text>@trimedAbstract</text>
+        }
+        else { Html.DisplayFor(modelItem => item.abstracts); }
+
+                }
+
+            </td>
+            <td>
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                }
+            </td>
+            @*<td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ID })
+                </t*@
+            <td>
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+            </td>
+        </tr>
     }
-    else { Html.DisplayFor(modelItem => item.abstracts); }
-
-}
-
-        </td>
-        <td>
-            @if (Request.IsAuthenticated)
-            { 
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) 
-            }
-        </td>
-        @*<td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-        </t*@d>
-        <td>
-            @if (Request.IsAuthenticated)
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            }
-        </td>
-    </tr>
-}
 
 </table>
+
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
