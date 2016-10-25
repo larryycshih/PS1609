@@ -38,7 +38,10 @@
                 <th>Name</th>
                 <th>Publish Date</th>
                 <th>Author</th>
-                <th>Actions</th>
+                @if (Request.IsAuthenticated)
+                {
+                    <th>Actions</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -57,9 +60,16 @@
                         @*@Html.DisplayFor(modelItem => item.ResearchAuthor)*@
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        @if (Request.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID })<text> |</text>
+                        }
+
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@@if (Request.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })<text> |</text>
+                        }
+
                     </td>
                 </tr>
             }
