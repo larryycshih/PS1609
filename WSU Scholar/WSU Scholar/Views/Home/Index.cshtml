@@ -116,17 +116,23 @@
                                 <br />
                             }
                         </div>
-                        <div id="menu3" class="tab-pane fade">
-                            <h3>Menu 3</h3>
-                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                        </div>
                     </div>
 
                 </div>
 
                 <div class="col-md-6">
-                    <h3>HOME</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    @*list of schools for total grants*@ 
+                    @foreach(var item in Model.totalGrants){
+                        <p>
+                            <h4>@Html.ActionLink(@item.schoolName, "Details", "Schools", new { id = item.id }, null)
+                            </h4>
+                            Total Grants: $@item.totalGrants
+                        </p>
+                        
+                        
+                    }
+
+
                 </div>
             </div>
 

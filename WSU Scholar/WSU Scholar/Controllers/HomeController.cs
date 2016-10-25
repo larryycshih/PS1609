@@ -49,6 +49,7 @@ namespace WSU_Scholar.Controllers
             List<HomeFeedMostDownloadedViewModel> ListMostDownloaded = new List<HomeFeedMostDownloadedViewModel>();
             List<HomeFeedMostRecentViewModel> ListMostRecent = new List<HomeFeedMostRecentViewModel>();
             List<HomeFeedMostViewedViewModel> ListMostViewed = new List<HomeFeedMostViewedViewModel>();
+            List<HomeFeedTotalGrantsViewModel> ListTotalGrants = new List<HomeFeedTotalGrantsViewModel>();
 
             foreach (var item in mostDownloaded){
                 ListMostDownloaded.Add(new HomeFeedMostDownloadedViewModel{id = item.ID,title = item.title,downloads = item.downloads,abstracts = item.abstracts});
@@ -61,13 +62,28 @@ namespace WSU_Scholar.Controllers
             }
 
 
+
+
+            // get the total grants from schools 
+           var schools =  db.School;
+            foreach (var item in schools)
+            {
+                var fgwrgf = (from a in db.Research where a.schoolID == item.ID select a.grants).Sum();
+                ListTotalGrants.Add(new HomeFeedTotalGrantsViewModel { id = item.ID, schoolName = item.schoolName, totalGrants = Convert.ToInt32(fgwrgf) });
+                
+            }
+
             feeds.schoolCount = schoolResult;
             feeds.mostDownloadedFeed = ListMostDownloaded;
             feeds.mostRecentFeed = ListMostRecent;
             feeds.mostViewedFeed = ListMostViewed;
+            feeds.totalGrants = ListTotalGrants;
+
 
             return View(feeds);
         }
+
+        
 
 
 

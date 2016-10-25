@@ -45,6 +45,7 @@ namespace WSU_Scholar.Models
         public IEnumerable<HomeFeedMostRecentViewModel> mostRecentFeed { get; set; }
         public IEnumerable<HomeFeedMostViewedViewModel> mostViewedFeed { get; set; }
         public IEnumerable<HomeFeedMostDownloadedViewModel> mostDownloadedFeed { get; set; }
+        public IEnumerable<HomeFeedTotalGrantsViewModel> totalGrants { get; set; }
     }
 
 }

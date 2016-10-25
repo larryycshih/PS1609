@@ -76,6 +76,15 @@ namespace WSU_Scholar.Models
         public string abstracts { get; set; }
     }
 
+    public class HomeFeedTotalGrantsViewModel
+    {
+        public int id { get; set; }
+        public string schoolName { get; set; }
+
+        public int totalGrants { get; set; }
+
+    }
+
     public class ResearchCreateViewModel
     {
         public Research research { get; set; }
