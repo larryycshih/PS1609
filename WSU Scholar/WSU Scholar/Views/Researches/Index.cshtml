@@ -8,7 +8,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Research</h2>
 
 <div>
     @if (Request.IsAuthenticated)
@@ -52,7 +52,7 @@
             @Html.ActionLink("Downloads", "Index", new { sortOrder = ViewBag.DownloadsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Absrtract
+            Abstract
         </th>
         <th>
         </th>
@@ -112,9 +112,9 @@
                 @Html.ActionLink("Edit", "Edit", new { id=item.ID }) 
             }
         </td>
-        <td>
+        @*<td>
                 @Html.ActionLink("Details", "Details", new { id = item.ID })
-        </td>
+        </t*@d>
         <td>
             @if (Request.IsAuthenticated)
             {

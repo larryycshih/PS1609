@@ -46,7 +46,8 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.title)
+                        @*@Html.DisplayFor(modelItem => item.title)*@
+                        @Html.ActionLink(item.title, "Details", "Researches", new { id = item.ID }, null)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.publishedDate)
@@ -68,6 +69,9 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.school.ID }) |
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.school.ID })<text> |</text>
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
