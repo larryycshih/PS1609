@@ -48,7 +48,16 @@
         </dt>
 
         <dd>
-            @Html.ActionLink( @Model.author.FullName,"Details","Authors",new{id = Model.author.ID},null )
+            @{
+                if (Model.author != null)
+                {
+                    @Html.ActionLink(@Model.author.FullName, "Details", "Authors", new { id = Model.author.ID }, null)
+                }
+                else { 
+                    @Html.Display("N/A")
+                }
+}
+            
            
         </dd>
 

@@ -15,7 +15,7 @@ namespace WSU_Scholar.Models
     {
         public int ID { get; set; }
 
-
+        [Display(Name="Title")]
         public Title? title { get; set; }
 
         [Required]
