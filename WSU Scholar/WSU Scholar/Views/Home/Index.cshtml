@@ -69,7 +69,8 @@
                             @foreach (var item in Model.mostRecentFeed)
                             {
                                 <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
-                                <p>@item.publishedDate</p>
+                                @*<p>@Html.DisplayFor(m => item.publishedDate)</p>*@
+                                @Html.DisplayFor(modelItem => item.publishedDate)
                                 var trimedAbstract = item.abstracts;
                                 if (trimedAbstract != null)
                                 {

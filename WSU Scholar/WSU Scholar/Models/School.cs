@@ -45,7 +45,10 @@ namespace WSU_Scholar.Models
         public int ID { get; set; }
         [Display(Name = "Title")]
         public String title { get; set; }
+        
         [Display(Name = "Published Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime publishedDate { get; set; }
         [Display(Name = "Author")]
         public String authorName { get; set; }

@@ -33,6 +33,10 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Research", "Index", "Researches")</li>
                     <li>@Html.ActionLink("Schools", "Index", "Schools")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Authors", "Index", "Authors")</li>
+                    }
                     @*<li>
                         @using (Html.BeginForm("Index", "Researches",FormMethod.Get))
                         {

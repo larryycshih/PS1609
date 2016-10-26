@@ -20,6 +20,7 @@ namespace WSU_Scholar.Models
         public int schoolID { get; set; }
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",ApplyFormatInEditMode = true)]
         [Display(Name="Published Date")]
         public DateTime publishedDate { get; set; }
         
@@ -49,6 +50,8 @@ namespace WSU_Scholar.Models
 
         public string title { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime publishedDate { get; set; }
 
         public string abstracts { get; set; }
