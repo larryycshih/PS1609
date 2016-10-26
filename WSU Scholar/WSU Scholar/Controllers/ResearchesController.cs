@@ -105,7 +105,6 @@ namespace WSU_Scholar.Controllers
             }
             Research research = db.Research.Find(id);
             Author author = (from a in db.ResearchAuthor where a.researchID == research.ID select a.Author).FirstOrDefault();
-                
             if (research == null)
             {
                 return HttpNotFound();
@@ -113,7 +112,7 @@ namespace WSU_Scholar.Controllers
             ResearchDetailsViewModel model = new ResearchDetailsViewModel { research = research, author = author };
             research.views++;
             db.SaveChanges();
-            //ViewBag.Author = author;
+
             return View(model);
         }
 
@@ -163,7 +162,7 @@ namespace WSU_Scholar.Controllers
                     Record r = new Record { researchID = research.ID, fileID = filename.ToString() };
                     db.Record.Add(r);
                     db.SaveChanges();
-                    
+
                 }
 
                 //this section register the reearch to a author
@@ -174,7 +173,7 @@ namespace WSU_Scholar.Controllers
                 ResearchAuthor researchAuthor = new ResearchAuthor();
                 //researchAuthor.ID = db.ResearchAuthor.Count() + 1;
                 researchAuthor.researchID = research.ID;
-                researchAuthor.authorID = author.ID; 
+                researchAuthor.authorID = author.ID;
 
                 db.ResearchAuthor.Add(researchAuthor);
                 db.SaveChanges();
@@ -269,11 +268,41 @@ namespace WSU_Scholar.Controllers
         {
             Research research = db.Research.Find(id);
             ResearchAuthor ra = db.ResearchAuthor.FirstOrDefault(a => a.researchID == research.ID);
-            db.ResearchAuthor.Remove(ra);
+            Record record = db.Record.FirstOrDefault(a => a.researchID == research.ID);
+            if (ra != null)
+            {
+                db.ResearchAuthor.Remove(ra);
+            }
+            if (record != null)
+            {
+                db.Record.Remove(record);
+            }
             db.Research.Remove(research);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public FileResult Download(int? id)
+        {
+            var record = db.Research.Find(id);
+            string fileName = record.title + ".pdf";
+            string contextType = "application/pdf";
+            if (record.Record != null)
+            {
+                string filePath = Server.MapPath("~/files/") + record.Record.fileID;
+                if (System.IO.File.Exists(filePath))
+                {
+                    return File(filePath, contextType, fileName);
+                }
+            }
+
+            return null;
+
+
+
+        }
+
 
         protected override void Dispose(bool disposing)
         {

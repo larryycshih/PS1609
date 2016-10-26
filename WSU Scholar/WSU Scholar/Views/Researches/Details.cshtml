@@ -102,7 +102,8 @@
             @Html.DisplayFor(model => model.research.abstracts)
         </dd>
         <dd>
-            <input type="button" value="Download" onclick="location.href=@Url.Action(" Details", "Researches", new { ID = Model.research.ID })" />
+            @Html.ActionLink("Download", "Download", new {id = Model.research.ID })
+            
         </dd>
 
     </dl>
