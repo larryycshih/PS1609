@@ -1,4 +1,4 @@
-﻿@model WSU_Scholar.Models.Author
+﻿@model WSU_Scholar.Models.AuthorDetailViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -6,85 +6,157 @@
 
 <h2>Details</h2>
 
-<div>
+<div class=" container">
+    
     <h4>Author</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <div class="col-md-6">
+    <dl class="dl-horizontal ">
         <dt>
-            @Html.DisplayNameFor(model => model.School.schoolName)
+            @Html.DisplayNameFor(model => model.author.School.schoolName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.School.schoolName)
+            @Html.DisplayFor(model => model.author.School.schoolName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.title)
+            @Html.DisplayNameFor(model => model.author.title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.title)
+            @Html.DisplayFor(model => model.author.title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fname)
+            @Html.DisplayNameFor(model => model.author.fname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fname)
+            @Html.DisplayFor(model => model.author.fname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lname)
+            @Html.DisplayNameFor(model => model.author.lname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.lname)
+            @Html.DisplayFor(model => model.author.lname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.telephone)
+            @Html.DisplayNameFor(model => model.author.telephone)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.telephone)
+            @Html.DisplayFor(model => model.author.telephone)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.DisplayNameFor(model => model.author.email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.email)
+            @Html.DisplayFor(model => model.author.email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.mobile)
+            @Html.DisplayNameFor(model => model.author.mobile)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.mobile)
+            @Html.DisplayFor(model => model.author.mobile)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.university)
+            @Html.DisplayNameFor(model => model.author.university)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.university)
+            @Html.DisplayFor(model => model.author.university)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.campus)
+            @Html.DisplayNameFor(model => model.author.campus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.campus)
+            @Html.DisplayFor(model => model.author.campus)
         </dd>
 
     </dl>
 </div>
+    <div class="col-md-6 ">
+        <div class="panel panel-danger">
+            <div class="panel-heading">Total Grants</div>
+            <div class="panel-body"><h4>$ @ViewBag.totalGrant</h4></div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="table-responsive">
+    <h4>Recent Articles</h4>
+
+    <table class=" table-hover table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Publish Date</th>
+                <th>School</th>
+                <th>Grants</th>
+                <th>View</th>
+                <th>Download</th>
+
+                @if (Request.IsAuthenticated)
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.research)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.title)*@
+                        @Html.ActionLink(item.title, "Details", "Researches", new { id = item.ID }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.publishedDate)
+                    </td>
+                    <td>
+                        @*<p> this is a stub</p>*@
+                        @Html.DisplayFor(modelItem => item.School.schoolName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(a => item.grants)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.views)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.downloads)
+                    </td>
+                   
+                        @if (Request.IsAuthenticated)
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Researches", new { ID = item.ID }, null)<text> |</text>
+                                @Html.ActionLink("Delete", "Delete", "Researches", new { id = item.ID }, null)<text> |</text>
+                            </td>
+                        }
+
+                        
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -68,8 +68,18 @@ namespace WSU_Scholar.Controllers
            var schools =  db.School;
             foreach (var item in schools)
             {
-                var fgwrgf = (from a in db.Research where a.schoolID == item.ID select a.grants).Sum();
-                ListTotalGrants.Add(new HomeFeedTotalGrantsViewModel { id = item.ID, schoolName = item.schoolName, totalGrants = Convert.ToInt32(fgwrgf) });
+                decimal total = 0;
+                try
+                {
+                     total = (from a in db.Research where a.schoolID == item.ID select a.grants).Sum();
+                }
+                catch
+                {
+
+                }
+
+                
+                ListTotalGrants.Add(new HomeFeedTotalGrantsViewModel { id = item.ID, schoolName = item.schoolName, totalGrants = (int)total });
                 
             }
 

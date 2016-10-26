@@ -110,7 +110,9 @@ namespace WSU_Scholar.Controllers
             {
                 return HttpNotFound();
             }
-            ResearchDetailsViewModel model = new ResearchDetailsViewModel { research = research, author = author };   
+            ResearchDetailsViewModel model = new ResearchDetailsViewModel { research = research, author = author };
+            research.views++;
+            db.SaveChanges();
             //ViewBag.Author = author;
             return View(model);
         }
@@ -266,6 +268,8 @@ namespace WSU_Scholar.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Research research = db.Research.Find(id);
+            ResearchAuthor ra = db.ResearchAuthor.FirstOrDefault(a => a.researchID == research.ID);
+            db.ResearchAuthor.Remove(ra);
             db.Research.Remove(research);
             db.SaveChanges();
             return RedirectToAction("Index");

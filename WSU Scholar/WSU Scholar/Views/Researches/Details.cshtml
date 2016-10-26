@@ -48,7 +48,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(m => m.author.FullName)
+            @Html.ActionLink( @Model.author.FullName,"Details","Authors",new{id = Model.author.ID},null )
+           
         </dd>
 
         <dt>
@@ -81,6 +82,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.research.downloads)
+            
         </dd>
 
         <dt>
@@ -89,6 +91,9 @@
 
         <dd>
             @Html.DisplayFor(model => model.research.abstracts)
+        </dd>
+        <dd>
+            <input type="button" value="Download" onclick="location.href=@Url.Action(" Details", "Researches", new { ID = Model.research.ID })" />
         </dd>
 
     </dl>

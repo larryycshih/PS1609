@@ -88,19 +88,37 @@ namespace WSU_Scholar.Controllers
             }
             Author author = db.Author.Find(id);
 
+            //var researches = from a in db.ResearchAuthor
+            //                 join b in db.Research on a.researchID equals b.ID 
+            //                 where a.authorID == author.ID
+            //                     select a;
             var researches = from a in db.ResearchAuthor
-                             join b in db.Research on a.researchID equals b.ID 
-                             where a.authorID == author.ID
-                                 select a;
+                             where a.authorID == id
+                             select a;
 
             if (author == null)
             {
                 return HttpNotFound();
             }
+
+            List<Research> listResearch = new List<Research>();
+            foreach (var item in researches)
+            {
+                listResearch.Add((Research)item.Research);
+            }
+            decimal totalGrant = 0;
+            //total grants
+            try {
+                totalGrant = (from a in db.ResearchAuthor where a.authorID == id select a.Research.grants).Sum();
+            }
+            catch {
+            }
+                        ViewBag.totalGrant = totalGrant;
+
             AuthorDetailViewModel result = new AuthorDetailViewModel();
             result.author = author;
-            //result.research = researches.ToList<Research>();
-            return View(author);
+            result.research = listResearch;
+            return View(result);
         }
 
         // GET: Authors/Create
