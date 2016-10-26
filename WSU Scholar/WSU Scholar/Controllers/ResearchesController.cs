@@ -293,6 +293,8 @@ namespace WSU_Scholar.Controllers
                 string filePath = Server.MapPath("~/files/") + record.Record.fileID;
                 if (System.IO.File.Exists(filePath))
                 {
+                    record.downloads++;
+                    db.SaveChanges();
                     return File(filePath, contextType, fileName);
                 }
             }
