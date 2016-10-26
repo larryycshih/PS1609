@@ -1,0 +1,122 @@
+﻿@model PagedList.IPagedList<WSU_Scholar.Models.Author>
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+
+    @using (Html.BeginForm("Index", "Authors", FormMethod.Get))
+    {
+        <p>
+            Find by Surname: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            School
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            @Html.ActionLink("Firstname", "Index", new { sortOrder = ViewBag.FnameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Surname", "Index", new { sortOrder = ViewBag.LnameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            E-mail
+        </th>
+        <th>
+            Mobile
+        </th>
+        <th>
+            @Html.ActionLink("University", "Index", new { sortOrder = ViewBag.UniSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("University", "Index", new { sortOrder = ViewBag.CampusSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+        </th>
+        <th>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.Label("Admin");
+            }
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.School.schoolName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.university)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.campus)
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+            }
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            }
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
+        </td>
+    </tr>
+}
+
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

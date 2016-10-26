@@ -1,0 +1,135 @@
+﻿@model PagedList.IPagedList<WSU_Scholar.Models.Research>
+@using PagedList.Mvc;
+@using Microsoft.AspNet.Identity;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Research</h2>
+
+<div>
+    @if (Request.IsAuthenticated)
+    {
+         @Html.ActionLink("Create New", "Create")
+    }
+    
+    @using (Html.BeginForm("Index", "Researches", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+ 
+</div>
+<table class="table">
+    <tr>
+        @*<th>
+                File ID
+            </th>*@
+        <th>
+            School
+        </th>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Published Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Subject", "Index", new { sortOrder = ViewBag.SubjectSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Grant", "Index", new { sortOrder = ViewBag.GrantSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Views", "Index", new { sortOrder = ViewBag.ViewsSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Downloads", "Index", new { sortOrder = ViewBag.DownloadsSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Abstract
+        </th>
+        <th>
+        </th>
+        <th>
+            @if (Request.IsAuthenticated)
+            {
+                @Html.Label("Admin");
+            }
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Record.fileID)
+                </td>*@
+            <td>
+                @Html.ActionLink(item.School.schoolName, "Details", "Schools", new { id = item.schoolID }, null)
+            </td>
+            <td>
+                @Html.ActionLink(item.title, "Details", null, new { id = item.ID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publishedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.grants)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.views)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.downloads)
+            </td>
+            <td>
+                @{
+        var trimedAbstract = item.abstracts;
+        var abstractMaxLength = 150;
+        if (trimedAbstract != null && item.abstracts.Length > abstractMaxLength)
+        {
+            trimedAbstract = trimedAbstract.Substring(0, abstractMaxLength) + "...";
+            //Html.DisplayFor(modelItem => trimedAbstract);
+            <text>@trimedAbstract</text>
+        }
+        else { Html.DisplayFor(modelItem => item.abstracts); }
+
+                }
+
+            </td>
+            <td>
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                }
+            </td>
+            @*<td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ID })
+                </t*@
+            <td>
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

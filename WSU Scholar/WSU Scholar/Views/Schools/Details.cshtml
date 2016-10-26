@@ -1,0 +1,87 @@
+﻿@model WSU_Scholar.Models.SchoolDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>School</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.school.schoolName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.school.schoolName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.school.disciplineName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.school.disciplineName)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="table-responsive">
+    <h4>Recent Articles</h4>
+
+    <table class=" table-hover table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Publish Date</th>
+                <th>Author</th>
+                @if (Request.IsAuthenticated)
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.details)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.title)*@
+                        @Html.ActionLink(item.title, "Details", "Researches", new { id = item.ID }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.publishedDate)
+                    </td>
+                    <td>
+                        @*<p> this is a stub</p>*@
+                        @Html.DisplayFor(modelItem => item.authorName)
+                    </td>
+                    <td>
+                        @if (Request.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Edit", "Edit","Researches", new { id = item.ID },null)<text> |</text>
+                        }
+
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@@if (Request.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Delete", "Delete","Researches", new { id = item.ID },null)<text> |</text>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+<p>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.school.ID })<text> |</text>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

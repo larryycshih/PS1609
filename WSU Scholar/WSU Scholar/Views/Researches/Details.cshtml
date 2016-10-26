@@ -1,0 +1,118 @@
+﻿@model WSU_Scholar.Models.ResearchDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Research</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Record.fileID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Record.fileID)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.School.schoolName)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.School.schoolName)*@
+            @Html.ActionLink(Model.research.School.schoolName, "Details", "Schools", new { id = Model.research.schoolID }, null)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.publishedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.publishedDate)
+        </dd>
+
+        <dt>
+            Author
+        </dt>
+
+        <dd>
+            @{
+                if (Model.author != null)
+                {
+                    @Html.ActionLink(@Model.author.FullName, "Details", "Authors", new { id = Model.author.ID }, null)
+                }
+                else { 
+                    @Html.Display("N/A")
+                }
+}
+            
+           
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.grants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.grants)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.views)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.views)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.downloads)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.downloads)
+            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.research.abstracts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.research.abstracts)
+        </dd>
+        <dd>
+            @Html.ActionLink("Download", "Download", new {id = Model.research.ID })
+            
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.research.ID })<text> |</text>
+    }
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

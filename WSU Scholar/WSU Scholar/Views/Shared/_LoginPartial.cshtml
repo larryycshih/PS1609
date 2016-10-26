@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        <form action="/Researches" class="search-bar" method="get" style=" padding-top: 15px; padding-bottom: 15px;">
+            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+            <input type="submit" value="Search" />
+        </form>
+    </li>
+    @if (Request.IsAuthenticated)
+    {
+        @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()*@
+
+
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+
+        //}
+    }
+    else
+    {
+
+
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+    }
+</ul>

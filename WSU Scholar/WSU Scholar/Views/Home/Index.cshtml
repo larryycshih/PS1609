@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+@model WSU_Scholar.Models.HomeFeedContainerViewModel
+
+
+@section headScripts{
+    <script src="~/Scripts/bubble_tree/bubbletree.js"></script>
+    <script src="~/Scripts/bubble_tree/jquery.history.js"></script>
+    <script src="~/Scripts/bubble_tree/jquery.min.js"></script>
+    <script src="~/Scripts/bubble_tree/jquery.tooltip.min.js"></script>
+    <script src="~/Scripts/bubble_tree/raphael-min.js"></script>
+    <script src="~/Scripts/bubble_tree/Tween.js"></script>
+    <script src="~/Scripts/bubble_tree/jquery-migrate.min.js"></script>
+    <link href="~/Content/bubble_tree/bubbletree.css" rel="stylesheet" />
+    @*<link href="~/Content/bubble_tree/page.css" rel="stylesheet" />*@
+    @*<link href="~/Content/bubble_tree/tooltip.css" rel="stylesheet" />*@
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            var data = {
+                label: 'Total',
+                amount: @{
+                int total = 0;
+                foreach (var item in Model.schoolCount) { total += item.count; }
+                <text>@total,</text>
+                }
+                color: '#0066bb',  // color for root node, will be inherited by children
+                children: [
+                    @foreach (var item in Model.schoolCount){<text>{label: '@item.schoolName', amount: @item.count},</text>}
+                ]
+            };
+
+
+            var bubbleTree = new BubbleTree({
+                data: data,
+                container: '.bubbletree'
+            });
+            bubbleTree.config.bubbleType="donut";
+
+
+        });
+
+    </script>
+}
+@* the reason this part is in a section block is that it need to span across to the edge of the page *@
+@section bubbleTree{
+
+    <div class="container-fluid bubbletree-wrapper">
+
+        <div class="bubbletree"></div>
+        <div class="container body-content">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#mostRecent">Most Recent</a></li>
+                        <li><a data-toggle="tab" href="#mostView">Most Viewed</a></li>
+                        <li><a data-toggle="tab" href="#mostDownloaded">Most Cited</a></li>
+                        @*<li><a data-toggle="tab" href="#menu3">Menu 3</a></li>*@
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="mostRecent" class="tab-pane fade in active">
+                            @foreach (var item in Model.mostRecentFeed)
+                            {
+                                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
+                                <p>@item.publishedDate</p>
+                                var trimedAbstract = item.abstracts;
+                                if (trimedAbstract != null)
+                                {
+                                    trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+                                    <p><text>@trimedAbstract</text></p>
+                                }
+                                else { Html.DisplayFor(modelItem => item.abstracts); }
+                                
+                                <br />
+                            }
+
+                        </div>
+                        <div id="mostView" class="tab-pane fade">
+                            @foreach (var item in Model.mostViewedFeed)
+                            {
+                                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
+                                <p>Visits: @item.views</p>
+                     
+                                var trimedAbstract = item.abstracts;
+                                if (trimedAbstract != null)
+                                {
+                                    trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+                                    <p><text>@trimedAbstract</text></p>
+                                }
+                                else { Html.DisplayFor(modelItem => item.abstracts); }
+                                
+                                <br />
+                            }
+                        </div>
+                        <div id="mostDownloaded" class="tab-pane fade">
+                            @foreach (var item in Model.mostDownloadedFeed)
+                            {
+                                <h4>@Html.ActionLink(@item.title, "Details", "Researches", new { id = item.id }, null)</h4>
+                                <p>Cited: @item.downloads</p>
+                       
+                                var trimedAbstract = item.abstracts;
+                                if (trimedAbstract != null)
+                                {
+                                    trimedAbstract = trimedAbstract.Substring(0, 150) + "...";
+                                    <p><text>@trimedAbstract</text></p>
+                                }
+                                else { Html.DisplayFor(modelItem => item.abstracts); }
+                                
+                                <br />
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    @*list of schools for total grants*@ 
+                    @foreach(var item in Model.totalGrants){
+                        <p>
+                            <h4>@Html.ActionLink(@item.schoolName, "Details", "Schools", new { id = item.id }, null)
+                            </h4>
+                            Total Grants: $@item.totalGrants
+                        </p>
+                        
+                        
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
+
+
+
+@section scripts{
+
+
+}

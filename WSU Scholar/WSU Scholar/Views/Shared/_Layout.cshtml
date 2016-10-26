@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - WSU Scholar</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("headScripts", required: false)
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a href="@Url.Action("Index","Home",null)">
+                    <img src="~/Image/logo-03.png" style="height:50px; top:0;" title="WSU Scholar" alt="WSU Scholar" /> 
+                </a>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Research", "Index", "Researches")</li>
+                    <li>@Html.ActionLink("Schools", "Index", "Schools")</li>
+                    @*<li>
+                        @using (Html.BeginForm("Index", "Researches",FormMethod.Get))
+                        {
+                            @Html.TextBox("SearchString", "", new { placeholder = "Search" })
+                            <input type="submit" value="Search" />
+                    
+                        }
+                    </li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    
+    @RenderSection("bubbleTree", required: false)
+    <div class="container body-content">
+        <div class=" container "><br /><br /></div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Western Sydney University</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
